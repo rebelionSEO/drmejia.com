@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Env / credentials — NEVER commit
+.env
+.env.local
+.env.*.local
+.creds.env
+*-creds.env
+
+# WordPress local state
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/plugins/
+!wp-content/plugins/.gitkeep
+
+# Theme deploy backups
+.deploys/
+
+# IDE
+.vscode/
+.idea/
+
+# Node (if we ever add tooling)
+node_modules/
+npm-debug.log

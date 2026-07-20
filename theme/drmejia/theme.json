@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+    "version": 3,
+    "settings": {
+        "color": {
+            "palette": [
+                { "name": "Brand", "slug": "brand", "color": "#1E5BA8" },
+                { "name": "Brand Deep", "slug": "brand-deep", "color": "#133E78" },
+                { "name": "Brand Soft", "slug": "brand-soft", "color": "#D4E4F5" },
+                { "name": "Brand Tint", "slug": "brand-tint", "color": "#E8F1FB" },
+                { "name": "Accent", "slug": "accent", "color": "#14B8A6" },
+                { "name": "Warn", "slug": "warn", "color": "#E07A3D" },
+                { "name": "Ink", "slug": "ink", "color": "#0F1F33" },
+                { "name": "Ink 2", "slug": "ink-2", "color": "#3D4F66" },
+                { "name": "Ink 3", "slug": "ink-3", "color": "#6B7A8F" },
+                { "name": "Background", "slug": "background", "color": "#FFFFFF" },
+                { "name": "Background Soft", "slug": "bg-soft", "color": "#F6F8FB" },
+                { "name": "Background Blue", "slug": "bg-blue", "color": "#EEF4FB" },
+                { "name": "Background Mint", "slug": "bg-mint", "color": "#E8F5F0" }
+            ],
+            "custom": false
+        },
+        "typography": {
+            "fontFamilies": [
+                {
+                    "name": "Plus Jakarta Sans",
+                    "slug": "sans",
+                    "fontFamily": "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif"
+                }
+            ]
+        },
+        "spacing": {
+            "units": ["rem", "px", "%"]
+        },
+        "layout": {
+            "contentSize": "720px",
+            "wideSize": "1240px"
+        }
+    },
+    "styles": {
+        "color": {
+            "background": "#FFFFFF",
+            "text": "#0F1F33"
+        },
+        "typography": {
+            "fontFamily": "'Plus Jakarta Sans', sans-serif"
+        }
+    }
+}
