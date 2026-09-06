@@ -12,13 +12,17 @@ function HomeHero() {
             <h1 className="h1" style={{ marginBottom: 24 }}>
               Cuidamos la salud de su hijo, desde el <span style={{ color: "var(--brand)" }}>primer día.</span>
             </h1>
-            <p className="lede" style={{ marginBottom: 32, maxWidth: 540 }}>
+            <p className="lede" style={{ marginBottom: 20, maxWidth: 540 }}>
               40 años de experiencia en pediatría y genética médica. Atención
               integral, diagnóstico oportuno y acompañamiento a familias en cada etapa.
             </p>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 28 }}>
+              <span className="chip" style={{ fontSize: 12, padding: "6px 12px" }}>Familias con niños</span>
+              <span className="chip" style={{ fontSize: 12, padding: "6px 12px", background: "var(--accent-soft)", color: "#0E8576" }}>Asesoría genética (parejas y adultos)</span>
+            </div>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 40 }}>
               <a href="contacto.html" className="btn btn-primary">Agendar cita <Arrow/></a>
-              <a href="https://wa.me/50583976896" className="btn btn-ghost">
+              <a href={WHATSAPP_URL} className="btn btn-ghost">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden style={{color:"var(--green)"}}>
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.026 2.013c-5.509 0-9.96 4.45-9.96 9.96 0 1.748.456 3.45 1.32 4.95l-1.4 5.117 5.235-1.376c1.444.789 3.07 1.205 4.715 1.205h.005c5.51 0 9.96-4.45 9.96-9.96 0-2.66-1.034-5.16-2.913-7.04-1.879-1.879-4.378-2.86-7.039-2.856z"/>
                 </svg>
@@ -90,10 +94,10 @@ function HomeRecognition() {
 
 function HomeServices() {
   const services = [
-    { icon: "stethoscope", title: "Pediatría general", desc: "Enfermedades respiratorias, infecciosas, alérgicas, gastrointestinales, neurológicas. Crecimiento, sueño, alimentación, vacunas." },
-    { icon: "dna", title: "Genética clínica", desc: "Anomalías congénitas, síndromes genéticos, Síndrome de Down, enfermedades raras, pacientes sin diagnóstico.", featured: true },
-    { icon: "baby", title: "Estudios genéticos", desc: "Cariotipo, microarrays, ADN fetal, exomas, genomas completos y tamizaje metabólico neonatal (prueba del talón)." },
-    { icon: "heart", title: "Cáncer hereditario", desc: "Asesoramiento y estudios diagnósticos para familias con historia de cáncer hereditario." },
+    { icon: "stethoscope", title: "Pediatría general", desc: "Enfermedades respiratorias, infecciosas, alérgicas, gastrointestinales, neurológicas. Crecimiento, sueño, alimentación, vacunas.", href: "consulta-pediatrica.html" },
+    { icon: "dna", title: "Genética clínica", desc: "Anomalías congénitas, síndromes genéticos, Síndrome de Down, enfermedades raras, pacientes sin diagnóstico.", href: "asesoria-genetica.html", featured: true },
+    { icon: "baby", title: "Tamizaje neonatal", desc: "Prueba del talón para detectar enfermedades metabólicas tratables antes de que aparezcan síntomas.", href: "tamizaje.html" },
+    { icon: "heart", title: "Cáncer hereditario", desc: "Asesoramiento y estudios diagnósticos para familias con historia de cáncer hereditario.", href: "servicios.html" },
   ];
   return (
     <section>
@@ -105,14 +109,18 @@ function HomeServices() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
           {services.map(s => (
-            <div key={s.title} className={"card" + (s.featured ? " card-blue" : "")}>
-              <div className={"icon-circle" + (s.featured ? "" : "")}>
+            <a key={s.title} href={s.href} className={"card" + (s.featured ? " card-blue" : "")} style={{ display: "block" }}>
+              <div className="icon-circle">
                 <Icon name={s.icon}/>
               </div>
               <h3 className="h4" style={{ marginBottom: 10 }}>{s.title}</h3>
-              <p className="body" style={{ fontSize: 14.5, margin: 0 }}>{s.desc}</p>
-            </div>
+              <p className="body" style={{ fontSize: 14.5, marginBottom: 16 }}>{s.desc}</p>
+              <span className="btn-link">Ver más <Arrow/></span>
+            </a>
           ))}
+        </div>
+        <div style={{ textAlign: "center", marginTop: 32 }}>
+          <a href="servicios.html" className="btn-link">Ver todos los servicios <Arrow/></a>
         </div>
       </div>
     </section>
@@ -133,11 +141,15 @@ function HomeKaryotype() {
               metabólicas tratables antes de que aparezcan los síntomas.
             </p>
             <ul className="check-list" style={{ marginBottom: 32 }}>
-              <li>Detección temprana de Síndrome de Down, Turner, trisomías y más</li>
-              <li>Procedimiento simple: una toma de sangre del bebé</li>
-              <li>Resultados en 2 a 3 semanas, con consulta de interpretación</li>
+              <li>Detecta enfermedades metabólicas y endocrinas tratables (p. ej. hipotiroidismo congénito, fenilcetonuria)</li>
+              <li>Procedimiento simple: una toma de sangre del talón del bebé</li>
+              <li>Resultados en 10 a 14 días, con consulta de interpretación</li>
               <li>Acompañamiento médico durante todo el proceso</li>
             </ul>
+            <p className="meta" style={{ marginBottom: 24, maxWidth: 480 }}>
+              Nota: el cariotipo (estudio de cromosomas) es un examen distinto. Si busca cariotipo u otros estudios genéticos, vea{" "}
+              <a href="servicios.html" className="btn-link" style={{ fontSize: 13 }}>Servicios</a>.
+            </p>
             <a href="tamizaje.html" className="btn btn-primary">Conocer el estudio <Arrow/></a>
           </div>
         </div>
@@ -265,7 +277,7 @@ function HomeCTA() {
               escríbanos directamente por WhatsApp.
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <a href="https://wa.me/50583976896" className="btn btn-whatsapp">
+              <a href={WHATSAPP_URL} className="btn btn-whatsapp">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.026 2.013c-5.509 0-9.96 4.45-9.96 9.96 0 1.748.456 3.45 1.32 4.95l-1.4 5.117 5.235-1.376c1.444.789 3.07 1.205 4.715 1.205h.005c5.51 0 9.96-4.45 9.96-9.96 0-2.66-1.034-5.16-2.913-7.04-1.879-1.879-4.378-2.86-7.039-2.856z"/>
                 </svg>
@@ -299,7 +311,7 @@ function HomeCTA() {
               <Icon name="phone" size={22}/>
               <div>
                 <div style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", marginBottom: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>Teléfono</div>
-                <div style={{ fontSize: 15, fontWeight: 600 }}>2278-5301 · WhatsApp 8397-6896</div>
+                <div style={{ fontSize: 15, fontWeight: 600 }}>Teléfono y WhatsApp · por confirmar</div>
               </div>
             </div>
           </div>
@@ -323,8 +335,8 @@ function TeleBanner() {
             </svg>
           </span>
           <div style={{ fontSize: 14, lineHeight: 1.4 }}>
-            <strong style={{ fontWeight: 700 }}>Nuevo · Consultas virtuales disponibles.</strong>
-            <span style={{ opacity: 0.9, marginLeft: 6 }}>Atención a pacientes fuera de Managua y de Nicaragua, y seguimiento por videollamada.</span>
+            <strong style={{ fontWeight: 700 }}>Consultas virtuales disponibles.</strong>
+            <span style={{ opacity: 0.9, marginLeft: 6 }}>Fuera de Managua o Nicaragua, por videollamada.</span>
           </div>
         </div>
         <div className="tele-banner-actions" style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -344,11 +356,11 @@ function TeleBanner() {
 function HomeFAQ() {
   const faqs = [
     { q: "¿Atienden consultas virtuales?", a: "Sí. Ofrecemos teleconsulta para pacientes fuera de Managua y fuera de Nicaragua, segundas opiniones, asesoría genética y seguimiento de casos previamente evaluados. La cita se coordina por WhatsApp y se realiza por videollamada." },
-    { q: "¿Cómo agendo una cita?", a: "Por WhatsApp al 8397-6896 o llamando a la clínica al 2278-5301. También puede usar el formulario de contacto y le respondemos en menos de 24 horas hábiles." },
+    { q: "¿Cómo agendo una cita?", a: "Por WhatsApp, llamando a la clínica, o con el formulario de contacto. Le respondemos en menos de 24 horas hábiles. Los números definitivos se publicarán al lanzar el sitio." },
     { q: "¿Cuál es el horario de atención?", a: "Lunes a viernes, 11:30 AM a 5:00 PM, en Clínica Perinatal, Managua. Las consultas virtuales pueden coordinarse en horarios alternativos según disponibilidad." },
     { q: "¿Qué estudios genéticos realizan?", a: "Cariotipo, microarrays, ADN fetal en sangre materna, exomas y genomas completos, tamizaje neonatal (prueba del talón), estudios de cáncer hereditario y compatibilidad genética de pareja." },
     { q: "¿Atienden a pacientes adultos?", a: "Para asesoramiento genético sí — incluye parejas que planifican embarazo, familias con historia de cáncer hereditario, y adultos con sospecha de condición genética. La consulta pediátrica es de 0 a 18 años." },
-    { q: "¿Aceptan seguros médicos?", a: "Aceptamos los principales seguros del país. Le confirmamos coberturas y emitimos factura formal para reembolsos al momento de agendar." },
+    { q: "¿Aceptan seguros médicos?", a: "La consulta se agenda de forma particular. Emitimos factura formal para que pueda gestionar el reembolso con su aseguradora. Al agendar le confirmamos si su póliza suele cubrir este tipo de atención." },
   ];
   return (
     <section style={{ background: "var(--bg-soft)" }}>

@@ -45,7 +45,7 @@ function ConsultaPage() {
     />
     <CTABand
       title="¿Listo para agendar la primera cita?"
-      lede="Atendemos consultas pediátricas de lunes a sábado en Managua."
+      lede="Atendemos consultas pediátricas de lunes a viernes en Managua."
     />
   </>);
 }

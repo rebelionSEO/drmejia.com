@@ -117,7 +117,7 @@ function FAQSection({ eyebrow = "Preguntas frecuentes", title, faqs, bg }) {
   );
 }
 
-function CTABand({ title, lede, primaryHref = "contacto.html", primaryLabel = "Agendar consulta", secondaryHref = "https://wa.me/50583976896", secondaryLabel = "Preguntar por WhatsApp" }) {
+function CTABand({ title, lede, primaryHref = "contacto.html", primaryLabel = "Agendar consulta", secondaryHref = WHATSAPP_URL, secondaryLabel = "Preguntar por WhatsApp" }) {
   return (
     <section style={{ background: "var(--brand)", color: "#FFF" }}>
       <div className="container" style={{ textAlign: "center", maxWidth: 720 }}>

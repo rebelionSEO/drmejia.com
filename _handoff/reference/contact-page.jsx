@@ -1,4 +1,4 @@
-// Contact page — v2
+// Contact page — v2.1 (consent, adult mode, hours, maps)
 
 function ContactHero() {
   return (
@@ -10,17 +10,35 @@ function ContactHero() {
         <h1 className="h1" style={{ maxWidth: 900 }}>
           Estamos aquí cuando <span style={{ color: "var(--brand)" }}>su familia</span> nos necesite
         </h1>
+        <p className="lede" style={{ marginTop: 20, maxWidth: 640 }}>
+          Complete el formulario o escriba por WhatsApp. Le contactamos en horario de clínica ({CLINIC_HOURS.replace("Lunes a Viernes · ", "")}).
+        </p>
       </div>
     </section>
   );
 }
 
+function isPediatricReason(reason) {
+  return ["general", "control", "karyotype"].includes(reason);
+}
+
 function ContactGrid() {
   const [submitted, setSubmitted] = React.useState(false);
-  const [form, setForm] = React.useState({ parent:"", phone:"", email:"", child:"", age:"", reason:"general", notes:"" });
-  function handleSubmit(e){ e.preventDefault(); setSubmitted(true); }
+  const [consent, setConsent] = React.useState(false);
+  const [form, setForm] = React.useState({
+    parent: "", phone: "", email: "", child: "", age: "", reason: "general", notes: "",
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!consent) return;
+    setSubmitted(true);
+  }
+
+  const showChildFields = isPediatricReason(form.reason);
+
   return (
-    <section style={{ paddingTop: 32 }}>
+    <section style={{ paddingTop: 32, paddingBottom: 80 }}>
       <div className="container">
         <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 40, alignItems: "start" }}>
           <div className="card" style={{ padding: 40 }}>
@@ -28,6 +46,7 @@ function ContactGrid() {
             <h2 className="h3" style={{ marginBottom: 12 }}>Formulario de cita</h2>
             <p className="body" style={{ marginBottom: 28, fontSize: 15 }}>
               Complete el formulario y le contactaremos dentro de las próximas 24 horas hábiles.
+              No envíe historiales clínicos completos aquí — solo lo necesario para contactarlo.
             </p>
             {submitted ? (
               <div style={{ background: "var(--bg-mint)", padding: 32, textAlign: "center", borderRadius: "var(--r-md)" }}>
@@ -37,43 +56,58 @@ function ContactGrid() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-                <Field label="Nombre del padre o madre" required>
-                  <input value={form.parent} onChange={e=>setForm({...form, parent:e.target.value})} placeholder="Nombre completo"/>
-                </Field>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-                  <Field label="Teléfono / WhatsApp" required>
-                    <input value={form.phone} onChange={e=>setForm({...form, phone:e.target.value})} placeholder="+505 0000-0000"/>
-                  </Field>
-                  <Field label="Correo electrónico">
-                    <input type="email" value={form.email} onChange={e=>setForm({...form, email:e.target.value})} placeholder="su@correo.com"/>
-                  </Field>
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 14 }}>
-                  <Field label="Nombre del paciente">
-                    <input value={form.child} onChange={e=>setForm({...form, child:e.target.value})} placeholder="Nombre del niño/a"/>
-                  </Field>
-                  <Field label="Edad">
-                    <input value={form.age} onChange={e=>setForm({...form, age:e.target.value})} placeholder="6 meses"/>
-                  </Field>
-                </div>
                 <Field label="Tipo de consulta" required>
-                  <select value={form.reason} onChange={e=>setForm({...form, reason:e.target.value})}>
+                  <select value={form.reason} onChange={e => setForm({ ...form, reason: e.target.value })}>
                     <option value="general">Consulta pediátrica general</option>
                     <option value="control">Control de niño sano</option>
-                    <option value="genetic">Asesoría genética</option>
-                    <option value="karyotype">Estudio de cariotipo</option>
+                    <option value="genetic">Asesoría genética (adulto / pareja)</option>
+                    <option value="karyotype">Estudio de cariotipo / tamizaje</option>
                     <option value="second">Segunda opinión</option>
                     <option value="other">Otro motivo</option>
                   </select>
                 </Field>
-                <Field label="Notas adicionales (opcional)">
-                  <textarea rows={4} value={form.notes} onChange={e=>setForm({...form, notes:e.target.value})} placeholder="Cuéntenos brevemente el motivo..."/>
+                <Field label={showChildFields ? "Nombre del padre o madre" : "Nombre completo"} required>
+                  <input value={form.parent} onChange={e => setForm({ ...form, parent: e.target.value })} placeholder="Nombre completo" required />
                 </Field>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8, gap: 16, flexWrap: "wrap" }}>
-                  <p className="meta" style={{ margin: 0, maxWidth: 280, fontSize: 12 }}>
-                    Al enviar, acepta nuestra política de privacidad médica.
-                  </p>
-                  <button type="submit" className="btn btn-primary">Enviar solicitud <Arrow/></button>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                  <Field label="Teléfono / WhatsApp" required>
+                    <input value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="+505 0000-0000" required />
+                  </Field>
+                  <Field label="Correo electrónico">
+                    <input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="su@correo.com" />
+                  </Field>
+                </div>
+                {showChildFields && (
+                  <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 14 }}>
+                    <Field label="Nombre del paciente (niño/a)">
+                      <input value={form.child} onChange={e => setForm({ ...form, child: e.target.value })} placeholder="Nombre del niño/a" />
+                    </Field>
+                    <Field label="Edad">
+                      <input value={form.age} onChange={e => setForm({ ...form, age: e.target.value })} placeholder="6 meses" />
+                    </Field>
+                  </div>
+                )}
+                <Field label="Notas adicionales (opcional)">
+                  <textarea rows={4} value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })} placeholder="Cuéntenos brevemente el motivo, sin datos clínicos sensibles..." />
+                </Field>
+                <label style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.5, cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={e => setConsent(e.target.checked)}
+                    required
+                    style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0 }}
+                  />
+                  <span>
+                    Acepto el tratamiento de mis datos para agendar la cita, conforme al{" "}
+                    <a href="legal.html#privacidad" style={{ color: "var(--brand)", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 2 }}>
+                      aviso de privacidad
+                    </a>
+                    . Este formulario no es una historia clínica.
+                  </span>
+                </label>
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 4 }}>
+                  <button type="submit" className="btn btn-primary" disabled={!consent}>Enviar solicitud <Arrow/></button>
                 </div>
               </form>
             )}
@@ -86,8 +120,10 @@ function ContactGrid() {
                 </svg>
                 <h3 className="h4" style={{ color: "#FFF" }}>WhatsApp</h3>
               </div>
-              <p style={{ fontSize: 14, opacity: 0.9, marginBottom: 16 }}>La forma más rápida de comunicarse. Atendemos de lun. a vie. de 8:00 a 17:00.</p>
-              <a href="https://wa.me/50583976896" className="btn" style={{ background: "#FFF", color: "var(--green)" }}>8397-6896 <Arrow/></a>
+              <p style={{ fontSize: 14, opacity: 0.9, marginBottom: 16 }}>
+                La forma más rápida de comunicarse. Respondemos en horario de clínica: {CLINIC_HOURS}.
+              </p>
+              <a href={WHATSAPP_URL} className="btn" style={{ background: "#FFF", color: "var(--green)" }}>{PHONE_WHATSAPP_LABEL} <Arrow/></a>
             </div>
             <div className="card">
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
@@ -99,12 +135,31 @@ function ContactGrid() {
               </p>
               <hr style={{ border: 0, borderTop: "1px solid var(--rule)", margin: "16px 0" }}/>
               <div>
-                <div className="meta" style={{ fontSize: 12, marginBottom: 4 }}>Lunes a Viernes</div>
-                <div style={{ fontSize: 14, fontWeight: 600 }}>11:30 AM – 5:00 PM</div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 8 }}>Citas: 2278-5301</div>
+                <div className="meta" style={{ fontSize: 12, marginBottom: 4 }}>Horario de atención</div>
+                <div style={{ fontSize: 14, fontWeight: 600 }}>{CLINIC_HOURS}</div>
+                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 8 }}>{PHONE_CLINIC_LABEL}</div>
+              </div>
+              <div style={{ display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
+                <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{ padding: "10px 14px", fontSize: 13 }}>Google Maps</a>
+                <a href={WAZE_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost" style={{ padding: "10px 14px", fontSize: 13 }}>Waze</a>
               </div>
             </div>
-            <Placeholder label="mapa · ubicación de la clínica" height={200}/>
+            <div className="card" style={{ background: "var(--bg-soft)" }}>
+              <div className="eyebrow" style={{ marginBottom: 12 }}>Primera consulta</div>
+              <h3 className="h4" style={{ marginBottom: 12 }}>Qué conviene traer</h3>
+              <ul className="check-list" style={{ margin: 0 }}>
+                <li>Documento de identidad del acompañante</li>
+                <li>Carnet de vacunas (si aplica)</li>
+                <li>Estudios o informes previos relevantes</li>
+                <li>Lista de medicamentos actuales</li>
+              </ul>
+            </div>
+            <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" style={{ display: "block" }}>
+              <Placeholder label="mapa · tocar para abrir en Google Maps" height={200}/>
+            </a>
+            <p className="meta" style={{ margin: 0, fontSize: 12 }}>
+              Ante una emergencia médica, no use este formulario: acuda a urgencias o llame a los servicios de emergencia.
+            </p>
           </div>
         </div>
       </div>
@@ -128,6 +183,7 @@ function Field({ label, required, children }) {
         }
         label input:focus, label textarea:focus, label select:focus { border-color: var(--brand); }
         label textarea { resize: vertical; }
+        button.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
       `}</style>
     </label>
   );

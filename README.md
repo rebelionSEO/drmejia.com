@@ -1,14 +1,15 @@
-# Dr. Mejía — drmejia.com
+# Dr. Mejía — doctorgerardomejia.com
 
 Sitio web del Dr. Gerardo Mejía — pediatra y genetista clínico, Nicaragua.
 
+**Dominio:** `doctorgerardomejia.com`
 **Stack:** WordPress · custom theme · Hostinger
 **Patrón:** mirrors `geramejia.com` (custom theme, SSH deploy, inline styles for LiteSpeed)
 
 ## Estructura
 
 ```
-drmejia.com/
+doctorgerardomejia.com/
 ├── theme/drmejia/         # WordPress custom theme (deployable unit)
 │   ├── style.css          # Design tokens + base + sections
 │   ├── theme.json         # WP block-editor palette
@@ -34,18 +35,21 @@ drmejia.com/
 - [x] Homepage Hero section translated from `_handoff/reference/home-sections.jsx`
 - [x] Design tokens inline in `style.css` (LiteSpeed-friendly)
 - [x] WhatsApp helper, inline icon set, accessible nav, mobile menu, skip-link
-- [ ] **Pause for sign-off** before continuing
+- [x] Live Hostinger WP provisioned; theme `drmejia` active
+- [x] Ops stack installed: Wordfence, Rank Math, Contact Form 7, Flamingo; LiteSpeed + Memcached on; `llmstxt` enabled
+- [ ] **wp-admin finish** — see [`_handoff/wordpress-launch-checklist.md`](_handoff/wordpress-launch-checklist.md)
+- [ ] **Pause for sign-off** before continuing theme sections
 
 ## Phase 2+ (pending sign-off)
 
 - Translate remaining home sections (recognition, services, karyotype, process, bio, FAQ, blog teaser, CTA)
 - Build page templates: `page-sobre.php`, `page-tamizaje.php`, `page-servicios.php`, `page-contacto.php`, `page-faq.php`, `page-profesionales.php`, `page-legal.php`, `page-sitemap.php`
 - Custom post type `service` (or use ACF flexible content on a single page)
-- Polylang (ES/EN) wiring in `functions.php`
-- Yoast / RankMath schema.org `Physician` + `MedicalBusiness` config
-- Contact form (Contact Form 7 or WPForms) → email or Web3Forms
-- `deploy.sh` modeled on geramejia.com once host is provisioned
-- LLMs.txt + AI-friendly robots (matches geramejia.com pattern)
+- Polylang (ES/EN) wiring in `functions.php` (Phase 2 — not installed yet)
+- Rank Math schema.org `Physician` + `MedicalBusiness` config (plugin installed; finish in wp-admin)
+- Contact Form 7 → practice email (plugin installed; finish in wp-admin)
+- `deploy.sh` modeled on geramejia.com
+- LLMs.txt via Hostinger Tools (`llmstxt` already enabled)
 
 ## Local development
 
@@ -53,10 +57,10 @@ The theme is plain WP — drop into any WP install:
 
 ```bash
 # Option A: Local by Flywheel
-# 1. Create new site in Local app: drmejia
+# 1. Create new site in Local app: doctorgerardomejia
 # 2. Symlink theme into the WP install:
-ln -s /Users/gmejia/projects/drmejia.com/theme/drmejia \
-      "/Users/gmejia/Local Sites/drmejia/app/public/wp-content/themes/drmejia"
+ln -s /Users/gerardom/Projects/doctorgerardomejia.com/theme/drmejia \
+      "/Users/gerardom/Local Sites/doctorgerardomejia/app/public/wp-content/themes/drmejia"
 # 3. Activate "Dr. Mejía" theme in wp-admin
 
 # Option B: Any other WP env — copy or symlink the theme/drmejia folder into wp-content/themes/.
@@ -64,14 +68,17 @@ ln -s /Users/gmejia/projects/drmejia.com/theme/drmejia \
 
 ## Deploy (Phase 6)
 
-Once Hostinger is provisioned, `deploy.sh` will mirror the `geramejia.com` pattern:
-auto-backup → SCP file(s) → rollback support, with deny-list, sourced from `~/.drmejia-creds.env`.
+Hostinger WP is live (`doctorgerardomejia.com`). `deploy.sh` will mirror the `geramejia.com` pattern:
+auto-backup → SCP file(s) → rollback support, with deny-list, sourced from `~/.doctorgerardomejia-creds.env`.
+
+Launch ops checklist: [`_handoff/wordpress-launch-checklist.md`](_handoff/wordpress-launch-checklist.md).
 
 ## Pendientes del cliente (assets / data)
 
 Ver `_handoff/assets-needed.md`. Lo crítico para lanzamiento:
 - Foto profesional + clínica
 - Dirección y horarios reales
-- Número WhatsApp confirmado (placeholder actual: `+505 8397 6896`)
+- Número WhatsApp / teléfono de citas (placeholder por ahora — se confirman antes del launch)
 - Email de destino para formulario
-- Dominio comprado
+- ~~Dominio comprado~~ → `doctorgerardomejia.com` (Hostinger)
+- Foto profesional (pendiente)

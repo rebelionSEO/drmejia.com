@@ -157,7 +157,7 @@ function KaryoCTA() {
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
           <a href="contacto.html" className="btn" style={{ background: "#FFF", color: "var(--brand)" }}>Agendar consulta <Arrow/></a>
-          <a href="https://wa.me/50583976896" className="btn btn-ghost" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#FFF" }}>Preguntar por WhatsApp</a>
+          <a href={WHATSAPP_URL} className="btn btn-ghost" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#FFF" }}>Preguntar por WhatsApp</a>
         </div>
       </div>
     </section>

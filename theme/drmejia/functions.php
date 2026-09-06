@@ -11,16 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Theme constants — single source of truth for clinic info.
- * TODO: move to ACF / Customizer once the real numbers are confirmed.
+ * Phones are placeholders until confirmed. Empty WhatsApp → contact page.
  */
 if ( ! defined( 'DRMEJIA_WHATSAPP' ) ) {
-    define( 'DRMEJIA_WHATSAPP', '50588842159' );
+    define( 'DRMEJIA_WHATSAPP', '' ); // e.g. '505XXXXXXXX' when confirmed
 }
 if ( ! defined( 'DRMEJIA_PHONE_DISPLAY' ) ) {
-    define( 'DRMEJIA_PHONE_DISPLAY', '+505 8884 2159' );
+    define( 'DRMEJIA_PHONE_DISPLAY', 'WhatsApp · por confirmar' );
+}
+if ( ! defined( 'DRMEJIA_PHONE_CLINIC_DISPLAY' ) ) {
+    define( 'DRMEJIA_PHONE_CLINIC_DISPLAY', 'Citas · por confirmar' );
 }
 if ( ! defined( 'DRMEJIA_EMAIL' ) ) {
-    define( 'DRMEJIA_EMAIL', 'mejiabaltodano@gmail.com' );
+    define( 'DRMEJIA_EMAIL', '' ); // destination email TBD
 }
 
 /**
@@ -103,9 +106,12 @@ function drmejia_resource_hints( $urls, $relation_type ) {
 add_filter( 'wp_resource_hints', 'drmejia_resource_hints', 10, 2 );
 
 /**
- * WhatsApp link helper.
+ * WhatsApp link helper. Falls back to contact page while number is TBD.
  */
 function drmejia_whatsapp_url( $message = '' ) {
+    if ( ! DRMEJIA_WHATSAPP ) {
+        return home_url( '/contacto/' );
+    }
     $url = 'https://wa.me/' . DRMEJIA_WHATSAPP;
     if ( $message ) {
         $url .= '?text=' . rawurlencode( $message );

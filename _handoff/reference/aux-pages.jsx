@@ -162,21 +162,23 @@ function LegalPage() {
     <PageHero
       chipIcon="shield" chipText="Aviso legal"
       title="Política de privacidad y" titleHighlight="aviso legal"
-      lede="Información sobre cómo tratamos sus datos médicos y los términos de uso de este sitio."
+      lede="Información sobre cómo tratamos sus datos y los términos de uso de este sitio."
     />
     <section>
       <div className="container" style={{ maxWidth: 760, fontSize: 16, lineHeight: 1.75, color: "var(--ink-2)" }}>
-        <h2 className="h3" style={{ marginBottom: 12, color: "var(--ink)" }}>1. Confidencialidad médica</h2>
-        <p>Toda información compartida en consulta o a través de este sitio está protegida por el secreto profesional médico, conforme a la Ley General de Salud de Nicaragua.</p>
-        <h2 className="h3" style={{ marginTop: 32, marginBottom: 12, color: "var(--ink)" }}>2. Tratamiento de datos personales</h2>
-        <p>Los datos que usted comparte mediante el formulario de contacto se utilizan exclusivamente para responder a su solicitud y agendar consultas. No se comparten con terceros salvo cuando es legalmente necesario.</p>
+        <h2 id="privacidad" className="h3" style={{ marginBottom: 12, color: "var(--ink)", scrollMarginTop: 96 }}>1. Privacidad y datos personales</h2>
+        <p>Los datos que usted comparte mediante el formulario de contacto o WhatsApp se utilizan exclusivamente para responder a su solicitud y coordinar citas. No constituyen una historia clínica electrónica. No se comparten con terceros salvo cuando sea legalmente necesario.</p>
+        <h2 className="h3" style={{ marginTop: 32, marginBottom: 12, color: "var(--ink)" }}>2. Confidencialidad médica</h2>
+        <p>La información clínica que se discute en consulta está protegida por el secreto profesional médico, conforme a la normativa aplicable en Nicaragua (incl. Ley 787 de Protección de Datos Personales, en lo pertinente).</p>
         <h2 className="h3" style={{ marginTop: 32, marginBottom: 12, color: "var(--ink)" }}>3. Información en el sitio</h2>
-        <p>El contenido de este sitio tiene fines informativos. No reemplaza una consulta médica presencial. Ante cualquier sospecha clínica, agende una cita o acuda a un servicio médico.</p>
-        <h2 className="h3" style={{ marginTop: 32, marginBottom: 12, color: "var(--ink)" }}>4. Cookies y analítica</h2>
-        <p>Utilizamos cookies básicas para el funcionamiento del sitio. No utilizamos rastreadores publicitarios.</p>
-        <h2 className="h3" style={{ marginTop: 32, marginBottom: 12, color: "var(--ink)" }}>5. Contacto</h2>
-        <p>Para ejercer sus derechos sobre sus datos, escriba a contacto@drmejia.ni o use el formulario de contacto del sitio.</p>
-        <p className="meta" style={{ marginTop: 48 }}>Última actualización: 1 de mayo de 2026</p>
+        <p>El contenido de este sitio tiene fines informativos. No reemplaza una consulta médica presencial ni constituye diagnóstico o tratamiento. Ante cualquier sospecha clínica, agende una cita o acuda a un servicio médico.</p>
+        <h2 className="h3" style={{ marginTop: 32, marginBottom: 12, color: "var(--ink)" }}>4. Emergencias</h2>
+        <p>Este sitio y sus formularios no son canales de emergencia. Ante una urgencia médica, acuda al servicio de urgencias más cercano o contacte a los servicios de emergencia locales.</p>
+        <h2 className="h3" style={{ marginTop: 32, marginBottom: 12, color: "var(--ink)" }}>5. Cookies y analítica</h2>
+        <p>Utilizamos cookies básicas para el funcionamiento del sitio. Si se incorpora analítica (p. ej. GA4), se solicitará consentimiento cuando corresponda.</p>
+        <h2 className="h3" style={{ marginTop: 32, marginBottom: 12, color: "var(--ink)" }}>6. Contacto</h2>
+        <p>Para ejercer sus derechos sobre sus datos, use el formulario de contacto del sitio o escriba por WhatsApp al número publicado.</p>
+        <p className="meta" style={{ marginTop: 48 }}>Última actualización: 20 de julio de 2026 · Borrador pendiente de revisión legal</p>
       </div>
     </section>
   </>);

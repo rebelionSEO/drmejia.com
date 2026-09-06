@@ -13,11 +13,18 @@ Lista de assets que necesitás conseguir antes (o durante) el build. Sin estos, 
 | **Favicon** | 32×32 + 180×180 (apple-touch) + SVG | Browser tab |
 | **OG image default** | 1200×630px, marca + nombre Dr. | Compartir en redes/WhatsApp |
 | **Email destino del form** | Correo profesional donde recibir solicitudes | API contact |
-| **Número WhatsApp profesional** | Con código país (+505...) | Header, footer, CTAs |
+| **Número WhatsApp profesional** | Con código país (+505...) — **placeholder por ahora** | Header, footer, CTAs |
+| **Teléfono de citas** | Línea de clínica — **placeholder por ahora** | Footer, contacto |
 | **Dirección exacta** | Calle, ciudad, referencias | Footer, contacto |
 | **Horarios reales** | L-V, Sábado, etc. | Footer, contacto |
 | **Google Maps embed** | URL del iframe de la clínica | Contacto |
-| **Dominio** | Comprado en Hostinger | DNS, SSL, env vars |
+| **Dominio** | ✅ Comprado: `doctorgerardomejia.com` (Hostinger) | DNS, SSL, env vars |
+
+### Claims verificados (no tocar)
+
+| Claim | Estado |
+|---|---|
+| **Primer médico genetista de Nicaragua** | Confirmado por el Dr. Mejía (hecho histórico). Mantener en hero/chip. |
 
 ## 🟡 Importantes (pueden agregarse post-launch)
 
