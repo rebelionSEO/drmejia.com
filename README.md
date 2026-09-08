@@ -75,3 +75,10 @@ Ver `_handoff/assets-needed.md`. Lo crítico para lanzamiento:
 - Número WhatsApp confirmado (placeholder actual: `+505 8397 6896`)
 - Email de destino para formulario
 - Dominio comprado
+
+## Fundamentos del motor de contenido
+
+Ver [el kit de entrevistas y contexto](docs/content-engine/README.md): cuaderno
+editable para el doctor, guía de conversaciones, plantilla North Star y diseño
+del futuro motor. Las respuestas y decisiones del doctor están pendientes; el
+kit no activa automatización ni publicación.

@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1",
+  "record_id": null,
+  "version": 1,
+  "kind": null,
+  "language": null,
+  "title": null,
+  "question_ids": [],
+  "source": {
+    "document_id": null,
+    "document_version": null,
+    "locator": null,
+    "author": null,
+    "created_at": null,
+    "captured_at": null
+  },
+  "verbatim": null,
+  "summary": null,
+  "epistemic_status": null,
+  "audience_ids": [],
+  "topics": [],
+  "scope": null,
+  "status": "draft",
+  "verification": {
+    "reviewer": null,
+    "reviewed_at": null,
+    "supporting_source_ids": [],
+    "notes": null
+  },
+  "privacy_class": "restricted",
+  "permissions": {
+    "internal_team_use": false,
+    "ai_context": false,
+    "public_adaptation": false,
+    "verbatim_publication": false,
+    "model_training": false,
+    "authorized_provider": null,
+    "evidence_reference": null,
+    "expires_at": null
+  },
+  "approval": {
+    "approved_by": null,
+    "approved_at": null,
+    "approved_version": null,
+    "evidence_reference": null
+  },
+  "effective_from": null,
+  "review_due": null,
+  "supersedes": null,
+  "website_targets": []
+}

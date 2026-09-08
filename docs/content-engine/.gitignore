@@ -1,0 +1,6 @@
+# Original answers and recordings stay in separately managed private storage.
+private-working/
+
+# Local document QA output is not part of the deliverables.
+qa/
+__pycache__/
