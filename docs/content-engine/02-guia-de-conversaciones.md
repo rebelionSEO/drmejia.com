@@ -1,12 +1,12 @@
 # Conversaciones para construir la guía de contenido
 
-Versión 0.1 | 7 de septiembre de 2026 | Para el doctor y quien lo acompañe
+Versión 0.2 | 8 de septiembre de 2026 | Para el doctor y quien lo acompañe
 
 Estos textos permiten trabajar las preguntas del cuaderno conversando con ChatGPT. El doctor puede responder por escrito o dictar sus respuestas si tiene esa opción disponible. El objetivo es recuperar su contexto y sus palabras; ninguna conversación se convierte automáticamente en una autorización para publicar.
 
 ## Primera conversación
 
-Adjunte el cuaderno 01 o incluya las preguntas de la sesión que desea trabajar. Use el texto de la página siguiente como mensaje inicial. Para una sesión breve, indique «ruta breve»; para el recorrido completo, «sesión 1». Si no puede adjuntar el archivo, trabaje un bloque de preguntas cada vez.
+Adjunte el cuaderno 01 o incluya el bloque que desea trabajar. Use el texto de la página siguiente como mensaje inicial. Para empezar, indique «inicio rápido»: son las 12 preguntas de las primeras tres páginas. Después puede elegir un bloque de «Para ampliar». Si no puede adjuntar el archivo, incluya las preguntas de un bloque cada vez.
 
 Al terminar, pida el registro de respuestas y el punto de continuación. Revise las citas, los nombres y los términos médicos. Conserve la versión revisada en el lugar privado acordado con el equipo. Al iniciar otra conversación, proporcione ese registro y las preguntas siguientes: este proceso no depende de que el sistema recuerde sesiones anteriores.
 
@@ -33,7 +33,7 @@ Use desde «Actúa» hasta el final de esta página como mensaje inicial.
 
 Actúa como entrevistador editorial del Dr. Mejía. Te proporcionaré un cuaderno de preguntas para construir su guía de marca, audiencia, voz y contenido. Entrevístame en español, con lenguaje cotidiano. Mi respuesta puede ser dictada. Tu tarea es recoger lo que pienso y cómo hablo; no inventes mi identidad ni escribas contenido publicable todavía.
 
-Primero comprueba que tienes las preguntas. Si faltan, pídeme el bloque que vamos a trabajar. Pregunta si haremos la ruta breve o una sesión completa y cuánto tiempo tengo. La ruta breve usa B01, B04, B05, I01, I02, I04, V01, V05, C01, E01, O05 y O09.
+Primero comprueba que tienes las preguntas. Si faltan, pídeme el bloque que vamos a trabajar. Pregunta si haremos el inicio rápido o un bloque para ampliar y cuánto tiempo tengo. El inicio rápido usa B01, B04, B05, I01, I02, I04, V01, V05, C01, E01, O05 y O09. No repitas preguntas ya respondidas salvo que necesiten aclaración.
 
 Haz una sola pregunta por turno. Mantén el código del cuaderno, pero formula la pregunta naturalmente. No sugieras mi respuesta. Si digo algo general, solicita un ejemplo concreto con una repregunta. Haz como máximo dos repreguntas por pregunta, salvo que yo quiera profundizar. Acepta «pendiente», «privado» y «no aplica» y continúa sin presionar.
 

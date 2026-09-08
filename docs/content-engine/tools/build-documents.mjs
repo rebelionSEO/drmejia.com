@@ -10,7 +10,7 @@ if (!moduleDirectory) {
 const require = createRequire(path.join(path.resolve(moduleDirectory), '_loader.cjs'));
 const { marked } = require('marked');
 const {
-  AlignmentType, Document, Footer, Header, HeadingLevel, PageNumber,
+  AlignmentType, BorderStyle, Document, Footer, Header, HeadingLevel, PageNumber,
   Packer, Paragraph, TextRun,
 } = require('docx');
 
@@ -21,6 +21,7 @@ const documents = [
   ['02-guia-de-conversaciones.md', '02-guia-de-conversaciones.docx', false],
   ['03-north-star.template.md', '03-north-star.docx', false],
 ];
+const selectedOutputs = process.argv.slice(3);
 
 function inline(tokens, format = {}) {
   return tokens.flatMap((token) => {
@@ -56,16 +57,29 @@ function body(tokens, workbook) {
       continue;
     }
     if (token.type === 'paragraph') {
-      const isResponse = workbook && /\[(Escriba|Completar)/.test(token.text)
-        && !token.text.startsWith('**');
-      const isQuestion = workbook && /[?]$/.test(token.text);
+      const isResponse = workbook && token.text.startsWith('Su respuesta:');
+      const isQuestion = workbook && /^\*\*[BIVCEO][0-9]{2} /.test(token.text);
+      const isHint = workbook && token.text.startsWith('Para responder:');
       paragraphs.push(new Paragraph({
-        children: inline(token.tokens),
+        children: inline(token.tokens, isQuestion
+          ? { bold: true, size: 28, color: '000000' }
+          : isHint ? { size: 21, color: '444444' } : {}),
         pageBreakBefore: startPage,
-        keepNext: isQuestion,
+        keepNext: isQuestion || isHint || isResponse,
         keepLines: true,
-        spacing: isResponse ? { after: 650 } : undefined,
+        spacing: isQuestion ? { before: 200, after: 100 }
+          : isHint ? { after: 110 } : isResponse ? { after: 0 } : undefined,
       }));
+      if (isResponse) {
+        for (let line = 0; line < 2; line++) {
+          paragraphs.push(new Paragraph({
+            children: [new TextRun({ text: ' ', size: 22 })],
+            keepNext: line === 0,
+            spacing: { line: 320, after: line === 1 ? 150 : 0 },
+            border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: 'D9D9D9' } },
+          }));
+        }
+      }
       startPage = false;
       continue;
     }
@@ -92,6 +106,7 @@ function body(tokens, workbook) {
 
 await fs.mkdir(outputDirectory, { recursive: true });
 for (const [source, output, workbook] of documents) {
+  if (selectedOutputs.length && !selectedOutputs.includes(output)) continue;
   const markdown = await fs.readFile(path.join(root, source), 'utf8');
   const document = new Document({
     creator: 'Proyecto Dr. Mejia',

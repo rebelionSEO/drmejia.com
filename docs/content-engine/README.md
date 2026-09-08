@@ -1,12 +1,12 @@
 # Fundamentos del motor de contenido
 
-Estado: kit de descubrimiento listo para completar; contexto del doctor aún no aprobado. Fecha: 2026-09-07.
+Estado: kit de descubrimiento listo para completar; contexto del doctor aún no aprobado. Actualización del cuestionario: 2026-09-08.
 
 Este paquete prepara el contexto necesario para un futuro motor de contenido conectado al sitio del Dr. Mejía. El primer trabajo es entrevistar al doctor, verificar hechos y convertir sus respuestas en una guía que él reconozca y apruebe. No se ha implementado RAG, entrenado un modelo, conectado cuentas ni activado publicación automática.
 
 ## Qué compartir con el doctor
 
-1. [Cuaderno de preguntas](01-cuaderno-del-doctor.md), también en [Word editable](entregables/01-cuaderno-del-doctor.docx). Es el punto de partida: 48 preguntas en cuatro sesiones, con una ruta breve de 12 preguntas.
+1. [Cuaderno de preguntas](01-cuaderno-del-doctor.md), también en [Word editable](entregables/01-cuaderno-del-doctor.docx). Es el punto de partida: 12 preguntas esenciales en las primeras tres páginas y 36 para ampliar después. Cada pregunta aparece una sola vez, en negrita, con una ayuda breve y líneas para responder.
 2. [Guía de conversaciones](02-guia-de-conversaciones.md), también en [Word](entregables/02-guia-de-conversaciones.docx). Incluye mensajes listos para entrevistar, sintetizar respuestas y trabajar futuras ideas.
 3. [Plantilla North Star](03-north-star.template.md), también en [Word editable](entregables/03-north-star.docx). La completa el equipo después de las entrevistas y la revisa el doctor; no es un segundo cuestionario.
 
@@ -17,10 +17,10 @@ Los documentos están en español por el contexto del sitio y su audiencia propu
 1. Gera comparte los documentos 01 y 02 con su papá por el medio que prefieran. Este paquete no se ha enviado a terceros.
 2. El doctor responde la ruta breve por escrito o en una conversación. No necesita acceder a GitHub ni aprender herramientas técnicas.
 3. Gera conserva el registro de respuestas y separa palabras literales, resúmenes, permisos y pendientes. El doctor confirma que el registro es fiel.
-4. El equipo completa progresivamente las cuatro sesiones, solicita documentos de respaldo y prepara el North Star con referencias a las respuestas.
+4. El equipo completa progresivamente los bloques para ampliar, solicita documentos de respaldo y prepara el North Star con referencias a las respuestas. Puede consultar las [notas de profundización](06-notas-del-entrevistador.md) para recuperar los detalles originales de cada pregunta.
 5. El doctor aprueba las decisiones pertinentes y revisa tres piezas de prueba antes de usar la guía en un flujo repetible.
 
-Estimación orientativa: cuatro sesiones de 35 a 50 minutos, más recopilación de materiales y revisión de la síntesis. Puede repartirse en varias semanas. La ruta breve permite descubrir prioridades; no satisface por sí sola los criterios del piloto.
+Empiece con respuestas breves a las primeras 12 preguntas y reserve la profundización para encuentros posteriores. La recopilación de materiales y la revisión de la síntesis se realizan aparte. El inicio rápido permite descubrir prioridades; no satisface por sí solo los criterios del piloto.
 
 ## Para quien construirá el motor
 
