@@ -4,19 +4,19 @@
     "settings": {
         "color": {
             "palette": [
-                { "name": "Brand", "slug": "brand", "color": "#1E5BA8" },
-                { "name": "Brand Deep", "slug": "brand-deep", "color": "#133E78" },
-                { "name": "Brand Soft", "slug": "brand-soft", "color": "#D4E4F5" },
-                { "name": "Brand Tint", "slug": "brand-tint", "color": "#E8F1FB" },
-                { "name": "Accent", "slug": "accent", "color": "#14B8A6" },
-                { "name": "Warn", "slug": "warn", "color": "#E07A3D" },
-                { "name": "Ink", "slug": "ink", "color": "#0F1F33" },
-                { "name": "Ink 2", "slug": "ink-2", "color": "#3D4F66" },
-                { "name": "Ink 3", "slug": "ink-3", "color": "#6B7A8F" },
+                { "name": "Brand", "slug": "brand", "color": "#0E3A43" },
+                { "name": "Brand Deep", "slug": "brand-deep", "color": "#082B33" },
+                { "name": "Brand Soft", "slug": "brand-soft", "color": "#DCE6E1" },
+                { "name": "Brand Tint", "slug": "brand-tint", "color": "#F0F5F2" },
+                { "name": "Accent", "slug": "accent", "color": "#7E9A8F" },
+                { "name": "Warn", "slug": "warn", "color": "#59766B" },
+                { "name": "Ink", "slug": "ink", "color": "#15343A" },
+                { "name": "Ink 2", "slug": "ink-2", "color": "#425A5C" },
+                { "name": "Ink 3", "slug": "ink-3", "color": "#596E6B" },
                 { "name": "Background", "slug": "background", "color": "#FFFFFF" },
-                { "name": "Background Soft", "slug": "bg-soft", "color": "#F6F8FB" },
-                { "name": "Background Blue", "slug": "bg-blue", "color": "#EEF4FB" },
-                { "name": "Background Mint", "slug": "bg-mint", "color": "#E8F5F0" }
+                { "name": "Background Soft", "slug": "bg-soft", "color": "#F7F9F7" },
+                { "name": "Background Blue", "slug": "bg-blue", "color": "#F0F5F2" },
+                { "name": "Background Mint", "slug": "bg-mint", "color": "#E8EFEB" }
             ],
             "custom": false
         },
@@ -40,7 +40,7 @@
     "styles": {
         "color": {
             "background": "#FFFFFF",
-            "text": "#0F1F33"
+            "text": "#15343A"
         },
         "typography": {
             "fontFamily": "'Plus Jakarta Sans', sans-serif"

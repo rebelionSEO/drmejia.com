@@ -24,8 +24,6 @@ get_header();
 
             <div class="meta" style="display: flex; gap: 12px; margin-top: var(--s-5); flex-wrap: wrap;">
                 <span><?php echo esc_html( get_the_date() ); ?></span>
-                <span aria-hidden="true">·</span>
-                <span><?php echo esc_html( get_the_author() ); ?></span>
             </div>
     </div>
 </section>

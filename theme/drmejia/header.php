@@ -12,9 +12,13 @@
 
 <header class="site-header" role="banner">
     <div class="container">
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" aria-label="<?php esc_attr_e( 'Inicio — Dr. Gerardo Mejía', 'drmejia' ); ?>">
-            <span class="monogram" aria-hidden="true">GM</span>
-            <span>Dr. Gerardo Mejía</span>
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" aria-label="<?php echo esc_attr( sprintf( __( 'Inicio — %s', 'drmejia' ), DRMEJIA_NAME ) ); ?>">
+            <?php if ( has_custom_logo() ) : ?>
+                <?php echo wp_get_attachment_image( (int) get_theme_mod( 'custom_logo' ), 'medium', false, array( 'class' => 'brand-logo-image', 'alt' => DRMEJIA_NAME . ' — Genética médica y pediatría', 'loading' => 'eager' ) ); ?>
+            <?php else : ?>
+                <span class="monogram" aria-hidden="true">GM</span>
+                <span><?php echo esc_html( DRMEJIA_NAME_SHORT ); ?></span>
+            <?php endif; ?>
         </a>
 
         <nav class="site-nav" role="navigation" aria-label="<?php esc_attr_e( 'Navegación principal', 'drmejia' ); ?>">
@@ -47,12 +51,11 @@
  */
 function drmejia_default_nav() {
     $items = array(
-        '/'              => __( 'Inicio', 'drmejia' ),
-        '/sobre/'        => __( 'Sobre', 'drmejia' ),
-        '/tamizaje/'     => __( 'Tamizaje', 'drmejia' ),
-        '/servicios/'    => __( 'Servicios', 'drmejia' ),
-        '/blog/'         => __( 'Blog', 'drmejia' ),
-        '/contacto/'     => __( 'Contacto', 'drmejia' ),
+        '/'                         => __( 'Inicio', 'drmejia' ),
+        '/servicios/asesoria-genetica/' => __( 'Consulta genética', 'drmejia' ),
+        '/tamizaje/'                => __( 'Tamizaje neonatal', 'drmejia' ),
+        '/adn-fetal/'               => __( 'ADN fetal', 'drmejia' ),
+        '/contacto/'                => __( 'Contacto', 'drmejia' ),
     );
     echo '<ul class="nav-links">';
     foreach ( $items as $path => $label ) {

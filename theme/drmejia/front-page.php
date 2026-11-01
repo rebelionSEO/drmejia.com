@@ -23,6 +23,8 @@ get_header();
      01 · HERO
      ============================================================ -->
 <section class="hero" data-screen-label="01 Hero">
+    <!-- Particle DNA, drawn by assets/js/dna-scenes.js -->
+    <canvas class="hero-dna dna-scene" data-scene="hero" aria-hidden="true"></canvas>
     <div class="container">
         <div class="hero-grid">
             <div>
@@ -35,14 +37,14 @@ get_header();
                     <?php
                     printf(
                         /* translators: %s = highlighted phrase */
-                        esc_html__( 'Cuidamos la salud de su hijo, desde el %s', 'drmejia' ),
-                        '<span class="accent">' . esc_html__( 'primer día.', 'drmejia' ) . '</span>'
+                        esc_html__( 'Comprender lo genético, con %s', 'drmejia' ),
+                        '<span class="accent">' . esc_html__( 'claridad y experiencia.', 'drmejia' ) . '</span>'
                     );
                     ?>
                 </h1>
 
                 <p class="lede">
-                    <?php esc_html_e( '40 años de experiencia en pediatría y genética médica. Atención integral, diagnóstico oportuno y acompañamiento a familias en cada etapa.', 'drmejia' ); ?>
+                    <?php esc_html_e( 'El Dr. Gerardo Mejía Baltodano —primer médico genetista de Nicaragua— explica con calma y acompaña a familias, adultos, embarazadas y parejas en consultas de genética y estudios.', 'drmejia' ); ?>
                 </p>
 
                 <div class="hero-ctas">
@@ -69,35 +71,15 @@ get_header();
                         <div class="stat-label"><?php esc_html_e( 'años como pediatra', 'drmejia' ); ?></div>
                     </div>
                     <div>
-                        <div class="stat-num">28</div>
+                        <div class="stat-num">29</div>
                         <div class="stat-label"><?php esc_html_e( 'años en genética', 'drmejia' ); ?></div>
                     </div>
                 </div>
             </div>
 
             <div class="hero-portrait-wrap">
-                <div class="hero-portrait">
-                    <?php if ( has_post_thumbnail() ) : ?>
-                        <?php the_post_thumbnail( 'large', array( 'alt' => esc_attr__( 'Retrato del Dr. Gerardo Mejía', 'drmejia' ) ) ); ?>
-                    <?php else : ?>
-                        <span><?php esc_html_e( 'Retrato del Dr. Mejía · pendiente', 'drmejia' ); ?></span>
-                    <?php endif; ?>
-                </div>
-
-                <div class="hero-floating-card hero-card-credentials">
-                    <span class="icon-circle mint">
-                        <?php echo drmejia_icon( 'shield', 22 ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-                    </span>
-                    <div>
-                        <div class="label"><?php esc_html_e( 'Atención certificada', 'drmejia' ); ?></div>
-                        <div class="sub"><?php esc_html_e( 'Colegio Médico de Nicaragua', 'drmejia' ); ?></div>
-                    </div>
-                </div>
-
-                <div class="hero-floating-card hero-card-hours">
-                    <div class="uppercase"><?php esc_html_e( 'Atención hoy', 'drmejia' ); ?></div>
-                    <div class="time">11:30 AM – 5:00 PM</div>
-                </div>
+                <!-- Where the DNA sits; the particles themselves are drawn on .hero-dna -->
+                <div class="hero-visual" aria-hidden="true"></div>
             </div>
         </div>
     </div>
@@ -113,7 +95,7 @@ get_header();
             <div><?php esc_html_e( 'Ex-Director · Hospital Manuel de Jesús Rivera', 'drmejia' ); ?></div>
             <div><?php esc_html_e( 'Academia Nicaragüense de Ciencias Médicas', 'drmejia' ); ?></div>
             <div><?php esc_html_e( 'Sociedad Nicaragüense de Pediatría', 'drmejia' ); ?></div>
-            <div><?php esc_html_e( 'Asoc. Latinoamericana de Genética Humana', 'drmejia' ); ?></div>
+            <div><?php esc_html_e( 'Red Latinoamericana de Genética Humana (RELAGH)', 'drmejia' ); ?></div>
             <div><?php esc_html_e( 'Colegio Médico de Nicaragua', 'drmejia' ); ?></div>
         </div>
     </div>
@@ -126,45 +108,49 @@ get_header();
     <div class="container">
         <div class="section-header-center">
             <span class="eyebrow"><?php esc_html_e( 'Servicios', 'drmejia' ); ?></span>
-            <h2><?php esc_html_e( 'Atención pediátrica integral, con la mirada de un genetista', 'drmejia' ); ?></h2>
-            <p class="lede"><?php esc_html_e( 'Cuatro áreas de práctica que cubren las necesidades médicas y emocionales de cada familia.', 'drmejia' ); ?></p>
+            <h2><?php esc_html_e( 'Genética primero, con pediatría cuando su hijo lo necesita', 'drmejia' ); ?></h2>
+            <p class="lede"><?php esc_html_e( 'Tres servicios prioritarios, más la consulta pediátrica.', 'drmejia' ); ?></p>
         </div>
 
         <?php
         $services = array(
             array(
-                'icon'     => 'stethoscope',
-                'title'    => __( 'Pediatría general', 'drmejia' ),
-                'desc'     => __( 'Enfermedades respiratorias, infecciosas, alérgicas, gastrointestinales, neurológicas. Crecimiento, sueño, alimentación, vacunas.', 'drmejia' ),
-                'featured' => false,
-            ),
-            array(
                 'icon'     => 'dna',
-                'title'    => __( 'Genética clínica', 'drmejia' ),
-                'desc'     => __( 'Anomalías congénitas, síndromes genéticos, Síndrome de Down, enfermedades raras, pacientes sin diagnóstico.', 'drmejia' ),
+                'title'    => __( 'Consulta de genética', 'drmejia' ),
+                'desc'     => __( 'Historia clínica, examen físico y árbol familiar. Primera consulta: 1 hora. Niños, adultos, embarazadas y parejas.', 'drmejia' ),
+                'href'     => home_url( '/servicios/asesoria-genetica/' ),
                 'featured' => true,
             ),
             array(
                 'icon'     => 'baby',
-                'title'    => __( 'Estudios genéticos', 'drmejia' ),
-                'desc'     => __( 'Cariotipo, microarrays, ADN fetal, exomas, genomas completos y tamizaje metabólico neonatal (prueba del talón).', 'drmejia' ),
+                'title'    => __( 'Tamizaje neonatal', 'drmejia' ),
+                'desc'     => __( 'Prueba del talón para detectar riesgo de enfermedades metabólicas. Ideal entre las 48 y 72 horas de vida.', 'drmejia' ),
+                'href'     => home_url( '/tamizaje/' ),
                 'featured' => false,
             ),
             array(
                 'icon'     => 'heart',
-                'title'    => __( 'Cáncer hereditario', 'drmejia' ),
-                'desc'     => __( 'Asesoramiento y estudios diagnósticos para familias con historia de cáncer hereditario.', 'drmejia' ),
+                'title'    => __( 'ADN fetal (NIPT)', 'drmejia' ),
+                'desc'     => __( 'Tamizaje prenatal no invasivo de cromosomopatías en sangre materna, según indicación clínica.', 'drmejia' ),
+                'href'     => home_url( '/adn-fetal/' ),
+                'featured' => false,
+            ),
+            array(
+                'icon'     => 'stethoscope',
+                'title'    => __( 'Pediatría y vacunas', 'drmejia' ),
+                'desc'     => __( 'Consultas pediátricas, seguimiento del crecimiento y desarrollo, y aplicación de vacunas.', 'drmejia' ),
+                'href'     => home_url( '/servicios/consulta-pediatrica/' ),
                 'featured' => false,
             ),
         );
         ?>
         <div class="services-grid">
             <?php foreach ( $services as $s ) : ?>
-                <div class="card<?php echo $s['featured'] ? ' card-blue' : ''; ?>">
+                <a href="<?php echo esc_url( $s['href'] ); ?>" class="card<?php echo $s['featured'] ? ' card-blue' : ''; ?>" style="display:block;">
                     <span class="icon-circle"><?php echo drmejia_icon( $s['icon'], 22 ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
                     <h3 class="h4"><?php echo esc_html( $s['title'] ); ?></h3>
                     <p class="body"><?php echo esc_html( $s['desc'] ); ?></p>
-                </div>
+                </a>
             <?php endforeach; ?>
         </div>
     </div>
@@ -176,7 +162,9 @@ get_header();
 <section class="section" style="background: var(--bg-soft);" data-screen-label="04 Karyotype">
     <div class="container">
         <div class="split-grid">
-            <div class="placeholder-block mint">
+            <div class="placeholder-block mint" role="img" aria-label="<?php esc_attr_e( 'Huella de un recién nacido con los costados del talón marcados: ahí se toma la muestra de la prueba del talón.', 'drmejia' ); ?>">
+                <!-- Newborn footprint with the heel-prick sites, drawn by assets/js/dna-scenes.js -->
+                <canvas class="dna-scene" data-scene="footprint" aria-hidden="true"></canvas>
                 <span class="placeholder-tag"><?php esc_html_e( 'prueba del talón · recién nacido', 'drmejia' ); ?></span>
             </div>
             <div>
@@ -186,9 +174,9 @@ get_header();
                     <?php esc_html_e( 'La prueba del talón: una muestra pequeña de sangre que detecta enfermedades metabólicas tratables antes de que aparezcan los síntomas.', 'drmejia' ); ?>
                 </p>
                 <ul class="check-list" style="margin-bottom: 32px;">
-                    <li><?php esc_html_e( 'Detección temprana de Síndrome de Down, Turner, trisomías y más', 'drmejia' ); ?></li>
-                    <li><?php esc_html_e( 'Procedimiento simple: una toma de sangre del bebé', 'drmejia' ); ?></li>
-                    <li><?php esc_html_e( 'Resultados en 2 a 3 semanas, con consulta de interpretación', 'drmejia' ); ?></li>
+                    <li><?php esc_html_e( 'Detecta riesgo de enfermedades metabólicas y endocrinas tratables', 'drmejia' ); ?></li>
+                    <li><?php esc_html_e( 'Procedimiento simple: una toma de sangre del talón del bebé', 'drmejia' ); ?></li>
+                    <li><?php esc_html_e( 'Ideal entre las 48 y 72 horas de vida; resultados en 10 a 14 días', 'drmejia' ); ?></li>
                     <li><?php esc_html_e( 'Acompañamiento médico durante todo el proceso', 'drmejia' ); ?></li>
                 </ul>
                 <a href="<?php echo esc_url( home_url( '/tamizaje/' ) ); ?>" class="btn btn-primary">
@@ -213,9 +201,9 @@ get_header();
 
         <?php
         $steps = array(
-            array( 'n' => '1', 'title' => __( 'Solicite su cita', 'drmejia' ),    'desc' => __( 'Por WhatsApp, formulario o llamada. Le respondemos en menos de 24 horas.', 'drmejia' ) ),
+            array( 'n' => '1', 'title' => __( 'Solicite su cita', 'drmejia' ),    'desc' => __( 'Por WhatsApp, formulario o llamada.', 'drmejia' ) ),
             array( 'n' => '2', 'title' => __( 'Consulta inicial', 'drmejia' ),    'desc' => __( 'Evaluación completa del paciente y conversación con los padres.', 'drmejia' ) ),
-            array( 'n' => '3', 'title' => __( 'Plan de seguimiento', 'drmejia' ), 'desc' => __( 'Diagnóstico claro, tratamiento si es necesario y plan de controles.', 'drmejia' ) ),
+            array( 'n' => '3', 'title' => __( 'Siguientes pasos', 'drmejia' ), 'desc' => __( 'Explicamos lo que sí y no sabemos, y si aplica, estudios o seguimiento. No prometemos un diagnóstico en una sola consulta.', 'drmejia' ) ),
         );
         ?>
         <div class="process-grid">
@@ -233,12 +221,23 @@ get_header();
 <!-- ============================================================
      06 · BIO TEASER
      ============================================================ -->
-<section class="section" style="background: var(--bg-blue);" data-screen-label="06 Bio">
+<style id="home-bio-portrait-style">
+    .home-bio-section { background: radial-gradient(ellipse 38% 68% at 26% 58%, rgba(181, 211, 188, .27), transparent 76%), var(--bg-blue); }
+    .home-bio-portrait { position: relative; min-height: clamp(360px, 40vw, 540px); margin: 0; overflow: hidden; isolation: isolate; }
+    .home-bio-portrait::before { content: ""; position: absolute; z-index: 0; left: 4%; bottom: -5%; width: 92%; height: 94%; border-radius: 50%; background: radial-gradient(circle at 44% 31%, rgba(255, 255, 255, .8), transparent 48%), linear-gradient(150deg, #e0ede3, #c5decb); box-shadow: inset 0 0 0 1px rgba(31, 83, 58, .06), 0 18px 50px rgba(31, 83, 58, .09); }
+    .home-bio-portrait::after { content: ""; position: absolute; z-index: 1; left: -2%; bottom: -12%; width: 104%; height: 103%; border: 1px solid rgba(48, 104, 75, .18); border-radius: 50%; }
+    .home-bio-portrait__image { position: absolute; z-index: 2; bottom: 0; left: 50%; display: block; width: min(82%, 455px); height: auto; max-width: none; transform: translateX(-50%); filter: drop-shadow(0 15px 16px rgba(24, 64, 53, .17)); }
+    @media (max-width: 900px) {
+        .home-bio-portrait { min-height: clamp(330px, 100vw, 500px); }
+        .home-bio-portrait__image { width: min(82%, 365px); }
+    }
+</style>
+<section class="section home-bio-section" data-screen-label="06 Bio">
     <div class="container">
         <div class="split-grid">
-            <div class="placeholder-block">
-                <span class="placeholder-tag"><?php esc_html_e( 'retrato editorial · clínica', 'drmejia' ); ?></span>
-            </div>
+            <figure class="home-bio-portrait">
+                <?php echo wp_get_attachment_image( 92, 'full', false, array( 'class' => 'home-bio-portrait__image', 'alt' => __( 'Dr. Gerardo Mejía Baltodano, pediatra y genetista', 'drmejia' ), 'loading' => 'lazy', 'decoding' => 'async' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            </figure>
             <div>
                 <span class="eyebrow" style="margin-bottom: 20px; display: inline-flex;"><?php esc_html_e( 'Sobre el doctor', 'drmejia' ); ?></span>
                 <h2 style="margin-top: 0; margin-bottom: 24px;"><?php esc_html_e( 'Una vida dedicada a la niñez nicaragüense', 'drmejia' ); ?></h2>
@@ -286,23 +285,19 @@ get_header();
             ),
             array(
                 'q' => __( '¿Cómo agendo una cita?', 'drmejia' ),
-                'a' => __( 'Por WhatsApp o llamando a la clínica. También puede usar el formulario de contacto y le respondemos en menos de 24 horas hábiles.', 'drmejia' ),
+                'a' => __( 'Por WhatsApp al 8884-2159, llamando a la clínica o con el formulario de contacto. Las citas se confirman llamando a la clínica.', 'drmejia' ),
             ),
             array(
                 'q' => __( '¿Cuál es el horario de atención?', 'drmejia' ),
-                'a' => __( 'Lunes a viernes, 11:30 AM a 5:00 PM, en Clínica Perinatal, Managua. Las consultas virtuales pueden coordinarse en horarios alternativos según disponibilidad.', 'drmejia' ),
+                'a' => __( 'Lunes a viernes, 12:00 a 1:00 PM y 3:00 a 6:00 PM; sábados de 8:00 AM a 12:00 PM, en Clínica Perinatal, Managua.', 'drmejia' ),
             ),
             array(
                 'q' => __( '¿Qué estudios genéticos realizan?', 'drmejia' ),
-                'a' => __( 'Cariotipo, microarrays, ADN fetal en sangre materna, exomas y genomas completos, tamizaje neonatal (prueba del talón), estudios de cáncer hereditario y compatibilidad genética de pareja.', 'drmejia' ),
+                'a' => __( 'Tamizaje metabólico neonatal, ADN fetal (NIPT), paneles (incluido cáncer hereditario), exoma, genoma y otros según la evaluación. Un estudio no siempre llega a un diagnóstico específico.', 'drmejia' ),
             ),
             array(
                 'q' => __( '¿Atienden a pacientes adultos?', 'drmejia' ),
-                'a' => __( 'Para asesoramiento genético sí — incluye parejas que planifican embarazo, familias con historia de cáncer hereditario, y adultos con sospecha de condición genética. La consulta pediátrica es de 0 a 18 años.', 'drmejia' ),
-            ),
-            array(
-                'q' => __( '¿Aceptan seguros médicos?', 'drmejia' ),
-                'a' => __( 'Aceptamos los principales seguros del país. Le confirmamos coberturas y emitimos factura formal para reembolsos al momento de agendar.', 'drmejia' ),
+                'a' => __( 'Sí. En genética se atiende a cualquier edad: recién nacidos, niños, adolescentes, adultos, embarazadas y parejas. La consulta pediátrica general es para 0 a 18 años.', 'drmejia' ),
             ),
         );
         ?>
@@ -406,12 +401,14 @@ get_header();
      09 · FINAL CTA (brand-blue panel)
      ============================================================ -->
 <section class="section home-cta-section" data-screen-label="09 CTA">
+    <!-- The helix zips shut again, drawn by assets/js/dna-scenes.js -->
+    <canvas class="dna-scene" data-scene="bookend" aria-hidden="true"></canvas>
     <div class="container">
         <div class="home-cta-grid">
             <div>
                 <h2><?php esc_html_e( 'Estamos aquí cuando su familia nos necesite', 'drmejia' ); ?></h2>
                 <p class="lede">
-                    <?php esc_html_e( 'Atendemos consultas de lunes a viernes en Managua. Para citas más rápidas, escríbanos directamente por WhatsApp.', 'drmejia' ); ?>
+                    <?php echo esc_html( sprintf( __( 'Horario: %s. Para citas más rápidas, escríbanos por WhatsApp.', 'drmejia' ), DRMEJIA_HOURS ) ); ?>
                 </p>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                     <a href="<?php echo esc_url( drmejia_whatsapp_url( __( 'Hola, quisiera agendar una consulta.', 'drmejia' ) ) ); ?>"
@@ -442,7 +439,7 @@ get_header();
                     <?php echo drmejia_icon( 'clock', 22 ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
                     <div>
                         <div class="row-label"><?php esc_html_e( 'Horario', 'drmejia' ); ?></div>
-                        <div class="row-value"><?php esc_html_e( 'Lunes a Viernes', 'drmejia' ); ?><br>11:30 AM – 5:00 PM</div>
+                        <div class="row-value"><?php echo esc_html( DRMEJIA_HOURS ); ?></div>
                     </div>
                 </div>
                 <div class="home-cta-row">

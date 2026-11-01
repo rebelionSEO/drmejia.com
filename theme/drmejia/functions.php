@@ -10,17 +10,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Theme constants — single source of truth for clinic info.
- * TODO: move to ACF / Customizer once the real numbers are confirmed.
+ * Theme constants — confirmed from the brand questionnaire (Sep 2026).
  */
+if ( ! defined( 'DRMEJIA_NAME' ) ) {
+    define( 'DRMEJIA_NAME', 'Dr. Gerardo Mejía Baltodano' );
+}
+if ( ! defined( 'DRMEJIA_NAME_SHORT' ) ) {
+    define( 'DRMEJIA_NAME_SHORT', 'Dr. Gerardo Mejía' );
+}
 if ( ! defined( 'DRMEJIA_WHATSAPP' ) ) {
     define( 'DRMEJIA_WHATSAPP', '50588842159' );
 }
 if ( ! defined( 'DRMEJIA_PHONE_DISPLAY' ) ) {
-    define( 'DRMEJIA_PHONE_DISPLAY', '+505 8884 2159' );
+    define( 'DRMEJIA_PHONE_DISPLAY', 'WhatsApp · 8884-2159' );
+}
+if ( ! defined( 'DRMEJIA_PHONE_CLINIC_DISPLAY' ) ) {
+    define( 'DRMEJIA_PHONE_CLINIC_DISPLAY', 'Citas · llamar a la clínica' );
+}
+if ( ! defined( 'DRMEJIA_HOURS' ) ) {
+    define( 'DRMEJIA_HOURS', 'Lun–Vie 12:00–1:00 PM y 3:00–6:00 PM · Sáb 8:00 AM–12:00 PM' );
+}
+if ( ! defined( 'DRMEJIA_HOURS_WEEKDAY' ) ) {
+    define( 'DRMEJIA_HOURS_WEEKDAY', '12:00–1:00 PM · 3:00–6:00 PM' );
 }
 if ( ! defined( 'DRMEJIA_EMAIL' ) ) {
-    define( 'DRMEJIA_EMAIL', 'mejiabaltodano@gmail.com' );
+    define( 'DRMEJIA_EMAIL', '' ); // destination email TBD
 }
 
 /**
@@ -61,20 +75,18 @@ add_action( 'after_setup_theme', 'drmejia_setup' );
  * Enqueue styles and scripts
  */
 function drmejia_enqueue_assets() {
-    // Plus Jakarta Sans
-    wp_enqueue_style(
-        'drmejia-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap',
-        array(),
-        null
-    );
-
-    // Theme stylesheet
+    // Theme stylesheet (Plus Jakarta Sans is self-hosted: @font-face at the top of style.css)
     wp_enqueue_style(
         'drmejia-style',
         get_stylesheet_uri(),
-        array( 'drmejia-google-fonts' ),
+        array(),
         wp_get_theme()->get( 'Version' )
+    );
+
+    // Scripts load deferred in the footer, so they never hold up the first paint.
+    $defer = array(
+        'in_footer' => true,
+        'strategy'  => 'defer',
     );
 
     // Main JS (mobile nav toggle, smooth-scroll, etc.)
@@ -84,28 +96,138 @@ function drmejia_enqueue_assets() {
             get_template_directory_uri() . '/assets/js/main.js',
             array(),
             wp_get_theme()->get( 'Version' ),
-            true
+            $defer
+        );
+    }
+
+    // Homepage motion: particle scenes (WebGL) and reveals / process line
+    if ( is_front_page() ) {
+        wp_enqueue_script(
+            'drmejia-dna-scenes',
+            get_template_directory_uri() . '/assets/js/dna-scenes.js',
+            array(),
+            wp_get_theme()->get( 'Version' ),
+            $defer
+        );
+        wp_enqueue_script(
+            'drmejia-home-motion',
+            get_template_directory_uri() . '/assets/js/home-motion.js',
+            array(),
+            wp_get_theme()->get( 'Version' ),
+            $defer
         );
     }
 }
 add_action( 'wp_enqueue_scripts', 'drmejia_enqueue_assets' );
 
 /**
- * Preconnect to fonts.googleapis.com / fonts.gstatic.com for LCP.
+ * Preload the self-hosted font so headings paint in Plus Jakarta Sans without a
+ * round trip to Google Fonts (that request alone blocked rendering ~4 s on mobile).
  */
-function drmejia_resource_hints( $urls, $relation_type ) {
-    if ( 'preconnect' === $relation_type ) {
-        $urls[] = array( 'href' => 'https://fonts.googleapis.com', 'crossorigin' );
-        $urls[] = array( 'href' => 'https://fonts.gstatic.com', 'crossorigin' );
-    }
-    return $urls;
+function drmejia_preload_font() {
+    printf(
+        '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
+        esc_url( get_template_directory_uri() . '/assets/fonts/plus-jakarta-sans-latin.woff2' )
+    );
 }
-add_filter( 'wp_resource_hints', 'drmejia_resource_hints', 10, 2 );
+add_action( 'wp_head', 'drmejia_preload_font', 1 );
 
 /**
- * WhatsApp link helper.
+ * Contact Form 7 assets only where a form can appear: the homepage has none.
+ */
+function drmejia_cf7_assets( $load ) {
+    return is_front_page() ? false : $load;
+}
+add_filter( 'wpcf7_load_js', 'drmejia_cf7_assets' );
+add_filter( 'wpcf7_load_css', 'drmejia_cf7_assets' );
+
+/**
+ * No emoji polyfill: every supported browser renders emoji natively.
+ */
+function drmejia_disable_emoji() {
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'wp_enqueue_scripts', 'wp_enqueue_emoji_styles' );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+}
+add_action( 'init', 'drmejia_disable_emoji' );
+
+/**
+ * Keep administrator identities and email addresses out of public Rank Math author data.
+ * Static pages are WebPage entries, so they do not need Article or author nodes.
+ */
+function drmejia_is_private_admin_schema_identity( $id, $name ) {
+    if ( is_email( $name ) ) {
+        return true;
+    }
+
+    if ( ! preg_match( '~/author/([^/]+)/?~', $id, $matches ) ) {
+        return false;
+    }
+
+    $user = get_user_by( 'slug', $matches[1] );
+    return $user instanceof WP_User && user_can( $user, 'manage_options' );
+}
+
+function drmejia_public_schema_without_admin_author( $data ) {
+    if ( ! is_array( $data ) ) {
+        return $data;
+    }
+
+    foreach ( $data as $key => $node ) {
+        if ( ! is_array( $node ) ) {
+            continue;
+        }
+
+        $types = isset( $node['@type'] ) ? (array) $node['@type'] : array();
+        $id    = isset( $node['@id'] ) ? (string) $node['@id'] : '';
+        $name  = isset( $node['name'] ) ? (string) $node['name'] : '';
+
+        if ( in_array( 'Person', $types, true ) && drmejia_is_private_admin_schema_identity( $id, $name ) ) {
+            unset( $data[ $key ] );
+            continue;
+        }
+
+        if ( is_page() && in_array( 'Article', $types, true ) ) {
+            unset( $data[ $key ] );
+            continue;
+        }
+
+        if ( isset( $node['author'] ) && is_array( $node['author'] ) ) {
+            $author_id   = isset( $node['author']['@id'] ) ? (string) $node['author']['@id'] : '';
+            $author_name = isset( $node['author']['name'] ) ? (string) $node['author']['name'] : '';
+            if ( drmejia_is_private_admin_schema_identity( $author_id, $author_name ) ) {
+                unset( $data[ $key ]['author'] );
+            }
+        }
+    }
+
+    return $data;
+}
+add_filter( 'rank_math/json_ld', 'drmejia_public_schema_without_admin_author', 99 );
+
+/** Redirect administrator author archives to avoid exposing private account details. */
+function drmejia_redirect_author_archive() {
+    if ( ! is_author() ) {
+        return;
+    }
+
+    $author = get_queried_object();
+    if ( ! $author instanceof WP_User || ! user_can( $author, 'manage_options' ) ) {
+        return;
+    }
+
+    wp_safe_redirect( home_url( '/blog/' ), 301 );
+    exit;
+}
+add_action( 'template_redirect', 'drmejia_redirect_author_archive', 1 );
+
+/**
+ * WhatsApp link helper. Falls back to contact page while number is TBD.
  */
 function drmejia_whatsapp_url( $message = '' ) {
+    if ( ! DRMEJIA_WHATSAPP ) {
+        return home_url( '/contacto/' );
+    }
     $url = 'https://wa.me/' . DRMEJIA_WHATSAPP;
     if ( $message ) {
         $url .= '?text=' . rawurlencode( $message );

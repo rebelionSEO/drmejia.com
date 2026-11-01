@@ -21,16 +21,16 @@ $faq_groups = array(
     'consulta' => array(
         'label' => __( 'La consulta', 'drmejia' ),
         'items' => array(
-            array( 'q' => __( '¿Cómo agendo una cita?', 'drmejia' ),                'a' => __( 'Por WhatsApp, llamando a la clínica o usando el formulario de contacto. Le respondemos en menos de 24 horas hábiles.', 'drmejia' ) ),
-            array( 'q' => __( '¿Cuál es el horario de atención?', 'drmejia' ),     'a' => __( 'Lunes a viernes, 11:30 AM a 5:00 PM, en Clínica Perinatal, Managua. Las consultas virtuales pueden coordinarse en horarios alternativos según disponibilidad.', 'drmejia' ) ),
+            array( 'q' => __( '¿Cómo agendo una cita?', 'drmejia' ),                'a' => __( 'Por WhatsApp al 8884-2159, llamando a la clínica o usando el formulario de contacto. Las citas se confirman llamando a la clínica.', 'drmejia' ) ),
+            array( 'q' => __( '¿Cuál es el horario de atención?', 'drmejia' ),     'a' => __( 'Lunes a viernes, 12:00 a 1:00 PM y 3:00 a 6:00 PM; sábados de 8:00 AM a 12:00 PM, en Clínica Perinatal, Managua.', 'drmejia' ) ),
             array( 'q' => __( '¿Atienden consultas virtuales?', 'drmejia' ),       'a' => __( 'Sí. Ofrecemos teleconsulta para pacientes fuera de Managua y fuera de Nicaragua, segundas opiniones, asesoría genética y seguimiento de casos previamente evaluados.', 'drmejia' ) ),
-            array( 'q' => __( '¿Aceptan seguros médicos?', 'drmejia' ),            'a' => __( 'Aceptamos los principales seguros del país. Le confirmamos coberturas y emitimos factura formal para reembolsos al momento de agendar.', 'drmejia' ) ),
+            
         ),
     ),
     'pediatria' => array(
         'label' => __( 'Pediatría', 'drmejia' ),
         'items' => array(
-            array( 'q' => __( '¿Atienden a pacientes adultos?', 'drmejia' ),       'a' => __( 'La consulta pediátrica es de 0 a 18 años. Para asesoramiento genético sí atendemos adultos — incluye parejas que planifican embarazo y familias con historia de cáncer hereditario.', 'drmejia' ) ),
+            array( 'q' => __( '¿Atienden a pacientes adultos?', 'drmejia' ),       'a' => __( 'Sí. En genética se atiende a cualquier edad. La consulta pediátrica general es de 0 a 18 años.', 'drmejia' ) ),
             array( 'q' => __( '¿Hacen control de niño sano?', 'drmejia' ),         'a' => __( 'Sí. Es parte central de la práctica pediátrica: crecimiento, desarrollo, alimentación, sueño, vacunas y prevención.', 'drmejia' ) ),
         ),
     ),

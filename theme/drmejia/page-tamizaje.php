@@ -15,7 +15,7 @@ get_header();
      ============================================================ -->
 <section class="page-hero mint">
     <div class="container">
-        <span class="chip" style="margin-bottom: 24px; background: var(--accent-soft); color: #0E8576; border-color: transparent;">
+        <span class="chip" style="margin-bottom: 24px; background: var(--accent-soft); color: var(--brand-deep); border-color: transparent;">
             <?php echo drmejia_icon( 'dna', 14 ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
             <?php esc_html_e( 'Estudio preventivo · Recién nacidos', 'drmejia' ); ?>
         </span>
@@ -29,7 +29,7 @@ get_header();
 
         <?php
         $kpis = array(
-            array( 'l' => __( 'Edad indicada', 'drmejia' ),  'v' => __( '2 – 7 días de vida', 'drmejia' ) ),
+            array( 'l' => __( 'Edad indicada', 'drmejia' ),  'v' => __( 'Ideal 48 – 72 horas', 'drmejia' ) ),
             array( 'l' => __( 'Procedimiento', 'drmejia' ),  'v' => __( 'Prueba del talón', 'drmejia' ) ),
             array( 'l' => __( 'Resultados', 'drmejia' ),     'v' => __( '10 – 14 días', 'drmejia' ) ),
             array( 'l' => __( 'Incluye', 'drmejia' ),        'v' => __( 'Consulta de interpretación', 'drmejia' ) ),

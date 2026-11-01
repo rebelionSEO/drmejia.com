@@ -13,6 +13,16 @@ get_header();
 <!-- ============================================================
      01 · ABOUT HERO
      ============================================================ -->
+<style id="about-portrait-style">
+    .about-portrait { position: relative; min-height: clamp(400px, 38vw, 480px); margin: 0; overflow: hidden; isolation: isolate; border-radius: 30px; background: radial-gradient(circle at 26% 20%, rgba(255, 255, 255, .8), transparent 38%), linear-gradient(145deg, var(--bg-soft), var(--accent-soft)); box-shadow: inset 0 0 0 1px rgba(14, 58, 67, .08), 0 18px 42px rgba(14, 58, 67, .08); }
+    .about-portrait::before { content: ""; position: absolute; z-index: 0; left: 13%; bottom: -1px; width: 74%; height: 91%; border-radius: 48% 48% 0 0; background: linear-gradient(155deg, var(--brand-soft), var(--accent)); }
+    .about-portrait::after { content: ""; position: absolute; z-index: 1; left: 8%; bottom: -14%; width: 84%; height: 105%; border: 1px solid rgba(14, 58, 67, .2); border-radius: 48% 48% 0 0; }
+    .about-portrait__image { position: absolute; z-index: 2; bottom: 0; left: 50%; display: block; width: min(65%, 340px); height: auto; max-width: none; transform: translateX(-50%); filter: drop-shadow(0 14px 16px rgba(44, 53, 50, .18)); }
+    @media (max-width: 900px) {
+        .about-portrait { min-height: clamp(370px, 110vw, 450px); }
+        .about-portrait__image { width: min(78%, 310px); }
+    }
+</style>
 <section class="page-hero">
     <div class="container">
         <span class="chip" style="margin-bottom: 24px;">
@@ -31,12 +41,12 @@ get_header();
         </h1>
 
         <div class="split-grid" style="margin-top: 32px;">
-            <div class="placeholder-block">
-                <span class="placeholder-tag"><?php esc_html_e( 'retrato editorial · clínica', 'drmejia' ); ?></span>
-            </div>
+            <figure class="about-portrait">
+                <?php echo wp_get_attachment_image( 92, 'full', false, array( 'class' => 'about-portrait__image', 'alt' => __( 'Dr. Gerardo Mejía Baltodano, pediatra y genetista', 'drmejia' ), 'loading' => 'eager', 'decoding' => 'async' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            </figure>
             <div>
                 <p class="lede" style="margin-bottom: 20px;">
-                    <?php esc_html_e( 'El Dr. Gerardo Mejía es pediatra y el primer médico genetista en la historia de Nicaragua. Durante más de tres décadas ha combinado la práctica clínica con la investigación, la docencia y el servicio público.', 'drmejia' ); ?>
+                    <?php esc_html_e( 'El Dr. Gerardo Mejía Baltodano es pediatra y el primer médico genetista en la historia de Nicaragua. 40 años como médico, 34 como pediatra y 29 como genetista.', 'drmejia' ); ?>
                 </p>
                 <p class="body" style="margin-bottom: 20px;">
                     <?php esc_html_e( 'Su trabajo siempre ha tenido un objetivo: que cada niño nicaragüense pueda crecer con un diagnóstico oportuno y una atención digna.', 'drmejia' ); ?>
@@ -84,7 +94,84 @@ get_header();
 </section>
 
 <!-- ============================================================
-     03 · RESEARCH LINES
+     03 · DOCUMENTED ACADEMIC ACTIVITY
+     ============================================================ -->
+<style>
+    .gmb-certificates { background: #fff; border-top: 1px solid #dce5e0; border-bottom: 1px solid #dce5e0; }
+    .gmb-certificates .gmb-cert-list { display: grid; gap: 14px; }
+    .gmb-certificates .gmb-cert-card { display: grid; grid-template-columns: 88px minmax(0, 1fr) 150px; align-items: center; gap: 24px; padding: 20px 28px; border: 1px solid #dce5e0; border-radius: 24px; background: #fff; color: #15343a; text-decoration: none; }
+    .gmb-certificates .gmb-cert-card:hover, .gmb-certificates .gmb-cert-card:focus-visible { border-color: #89a99a; box-shadow: 0 12px 27px rgba(15,57,64,.075); outline-offset: 3px; }
+    .gmb-certificates .gmb-cert-year { color: #0e3a43; font-size: 18px; font-weight: 800; }
+    .gmb-certificates .gmb-cert-copy h3 { margin: 0 0 6px; color: #15343a; font-size: 18px; line-height: 1.35; }
+    .gmb-certificates .gmb-cert-copy p { margin: 0; color: #53676b; font-size: 14px; line-height: 1.55; }
+    .gmb-certificates .gmb-cert-open { display: inline-block; margin-top: 10px; color: #0e3a43; font-size: 13px; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
+    .gmb-certificates .gmb-cert-image { display: block; width: 150px; height: 112px; object-fit: contain; border: 1px solid #dce5e0; border-radius: 9px; background: #f7f9f7; }
+    @media (max-width: 680px) {
+        .gmb-certificates .gmb-cert-card { grid-template-columns: minmax(0, 1fr) 110px; gap: 10px 14px; padding: 17px; }
+        .gmb-certificates .gmb-cert-year, .gmb-certificates .gmb-cert-copy { grid-column: 1; }
+        .gmb-certificates .gmb-cert-image { grid-column: 2; grid-row: 1 / 3; width: 110px; height: 84px; }
+    }
+</style>
+<section class="section gmb-certificates" id="certificados" aria-labelledby="gmb-certificates-heading">
+    <div class="container">
+        <div class="section-header-center">
+            <span class="eyebrow"><?php esc_html_e( 'Actividad académica e investigación', 'drmejia' ); ?></span>
+            <h2 id="gmb-certificates-heading"><?php esc_html_e( 'Docencia, investigación y participación profesional', 'drmejia' ); ?></h2>
+        </div>
+
+        <?php
+        // Documentos y miniaturas aprobados por el Dr. Mejía; IDs de la biblioteca de WordPress.
+        $certificates = array(
+            array(
+                'year' => '2026',
+                'title' => __( 'Expositor en el VIII Simposio de Oncología', 'drmejia' ),
+                'detail' => __( '«Cáncer en población joven» · Hospital Vivian Pellas · 24 de octubre de 2026', 'drmejia' ),
+                'image_alt' => __( 'Diploma de expositor del VIII Simposio de Oncología', 'drmejia' ),
+                'image_id' => 91,
+                'document_id' => 90,
+            ),
+            array(
+                'year' => '2021',
+                'title' => __( 'Reconocimiento por labor docente', 'drmejia' ),
+                'detail' => __( 'Diplomado Gerencia de Hospitales · CIES UNAN-Managua · 15 de diciembre de 2021', 'drmejia' ),
+                'image_alt' => __( 'Reconocimiento por docencia en el Diplomado Gerencia de Hospitales', 'drmejia' ),
+                'image_id' => 87,
+                'document_id' => 86,
+            ),
+            array(
+                'year' => '2021',
+                'title' => __( 'Reconocimiento como investigador principal', 'drmejia' ),
+                'detail' => __( 'Primera fase de un ensayo clínico · CIES UNAN-Managua · 30 de diciembre de 2021', 'drmejia' ),
+                'image_alt' => __( 'Reconocimiento como investigador principal de un ensayo clínico', 'drmejia' ),
+                'image_id' => 89,
+                'document_id' => 88,
+            ),
+        );
+        ?>
+        <div class="gmb-cert-list">
+            <?php foreach ( $certificates as $certificate ) :
+                $document_url = wp_get_attachment_url( $certificate['document_id'] );
+                $image_url = wp_get_attachment_image_url( $certificate['image_id'], 'medium' );
+                if ( ! $document_url || ! $image_url ) {
+                    continue;
+                }
+                ?>
+                <a class="gmb-cert-card" href="<?php echo esc_url( $document_url ); ?>" target="_blank" rel="noopener noreferrer">
+                    <span class="gmb-cert-year"><?php echo esc_html( $certificate['year'] ); ?></span>
+                    <div class="gmb-cert-copy">
+                        <h3><?php echo esc_html( $certificate['title'] ); ?></h3>
+                        <p><?php echo esc_html( $certificate['detail'] ); ?></p>
+                        <span class="gmb-cert-open"><?php esc_html_e( 'Ver documento original (PDF) ↗', 'drmejia' ); ?></span>
+                    </div>
+                    <img class="gmb-cert-image" src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $certificate['image_alt'] ); ?>" loading="lazy" decoding="async">
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     04 · RESEARCH LINES
      ============================================================ -->
 <section class="section">
     <div class="container">
@@ -117,13 +204,13 @@ get_header();
 </section>
 
 <!-- ============================================================
-     04 · PHILOSOPHY QUOTE
+     05 · PHILOSOPHY QUOTE
      ============================================================ -->
 <section class="philosophy">
     <div class="container">
         <div class="quote-mark">"</div>
         <p><?php esc_html_e( 'Ayudar a las personas y sus familias de manera incondicional, respondiendo a sus preguntas e inquietudes y estando siempre disponible para ellos.', 'drmejia' ); ?></p>
-        <div class="attribution">— Dr. Gerardo Mejía</div>
+        <div class="attribution">— <?php echo esc_html( DRMEJIA_NAME ); ?></div>
     </div>
 </section>
 

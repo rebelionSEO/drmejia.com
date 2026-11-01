@@ -1,0 +1,58 @@
+/* Dr. Mejía — jerarquía y ritmo de lectura, 2026-10-30 */
+main h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+main .section-header-center h2 {
+  margin-bottom: 20px;
+}
+
+/* El artículo necesita una escala menor que las secciones de portada. */
+.post-content h2 {
+  font-size: clamp(26px, 2.4vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin: 40px 0 16px;
+  text-wrap: pretty;
+}
+.post-content h3 {
+  font-size: clamp(20px, 1.8vw, 23px);
+  line-height: 1.35;
+  margin: 32px 0 12px;
+  text-wrap: pretty;
+}
+.post-content h2:first-child,
+.post-content h3:first-child {
+  margin-top: 0;
+}
+.post-content p {
+  line-height: 1.75;
+  margin: 0 0 20px;
+}
+.post-content ul,
+.post-content ol {
+  margin: 0 0 24px;
+  padding-left: 1.4em;
+}
+.post-content li {
+  margin-bottom: 8px;
+}
+.post-content h2 + h3 {
+  margin-top: 24px;
+}
+@media (max-width: 600px) {
+  .post-content h2 { margin-top: 32px; }
+  .post-content h3 { margin-top: 28px; }
+  .post-content h2:first-child,
+  .post-content h3:first-child { margin-top: 0; }
+}
+
+/* Evita columnas demasiado estrechas en Tamizaje, Servicios y Profesionales. */
+@media (max-width: 600px) {
+  .page-id-13 .services-grid,
+  .page-id-14 .services-grid,
+  .page-id-20 .services-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}

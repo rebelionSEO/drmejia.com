@@ -18,12 +18,12 @@ get_header();
             <?php
             printf(
                 /* translators: %s = highlighted phrase */
-                esc_html__( 'Atención pediátrica integral con la %s', 'drmejia' ),
-                '<span class="accent">' . esc_html__( 'mirada de un genetista', 'drmejia' ) . '</span>'
+                esc_html__( 'Genética y pediatría, con %s', 'drmejia' ),
+                '<span class="accent">' . esc_html__( 'explicación clara', 'drmejia' ) . '</span>'
             );
             ?>
         </h1>
-        <p class="lede"><?php esc_html_e( 'Cuatro áreas de práctica que cubren las necesidades médicas y emocionales de cada familia.', 'drmejia' ); ?></p>
+        <p class="lede"><?php esc_html_e( 'Prioridad: consulta genética, tamizaje neonatal y ADN fetal.', 'drmejia' ); ?></p>
     </div>
 </section>
 
@@ -31,15 +31,15 @@ get_header();
     <div class="container">
         <?php
         $services = array(
-            array( 'icon' => 'stethoscope', 'slug' => 'consulta-pediatrica',  'title' => __( 'Consulta pediátrica', 'drmejia' ),     'desc' => __( 'Enfermedades respiratorias, infecciosas, alérgicas, gastrointestinales, neurológicas. Crecimiento, sueño, alimentación, vacunas.', 'drmejia' ) ),
-            array( 'icon' => 'dna',         'slug' => 'asesoria-genetica',    'title' => __( 'Asesoría genética', 'drmejia' ),       'desc' => __( 'Anomalías congénitas, síndromes genéticos, Síndrome de Down, enfermedades raras, pacientes sin diagnóstico.', 'drmejia' ) ),
-            array( 'icon' => 'baby',        'slug' => 'tamizaje',             'title' => __( 'Estudios genéticos y tamizaje', 'drmejia' ), 'desc' => __( 'Cariotipo, microarrays, ADN fetal, exomas, genomas completos y tamizaje metabólico neonatal (prueba del talón).', 'drmejia' ) ),
-            array( 'icon' => 'heart',       'slug' => 'cancer-hereditario',   'title' => __( 'Cáncer hereditario', 'drmejia' ),      'desc' => __( 'Asesoramiento y estudios diagnósticos para familias con historia de cáncer hereditario.', 'drmejia' ) ),
+            array( 'icon' => 'dna',         'href' => home_url( '/servicios/asesoria-genetica/' ), 'title' => __( 'Consulta de genética', 'drmejia' ),     'desc' => __( 'Asesoramiento para niños, adultos, embarazadas y parejas. Primera consulta de 1 hora.', 'drmejia' ) ),
+            array( 'icon' => 'baby',        'href' => home_url( '/tamizaje/' ),                    'title' => __( 'Tamizaje neonatal', 'drmejia' ),        'desc' => __( 'Prueba del talón. Ideal entre las 48 y 72 horas de vida.', 'drmejia' ) ),
+            array( 'icon' => 'heart',       'href' => home_url( '/adn-fetal/' ),                   'title' => __( 'ADN fetal (NIPT)', 'drmejia' ),         'desc' => __( 'Tamizaje prenatal no invasivo de cromosomopatías en sangre materna.', 'drmejia' ) ),
+            array( 'icon' => 'stethoscope', 'href' => home_url( '/servicios/consulta-pediatrica/' ), 'title' => __( 'Pediatría y vacunas', 'drmejia' ),     'desc' => __( 'Consultas pediátricas, crecimiento, desarrollo y vacunas.', 'drmejia' ) ),
         );
         ?>
         <div class="services-grid" style="grid-template-columns: repeat(2, 1fr);">
             <?php foreach ( $services as $s ) : ?>
-                <a href="<?php echo esc_url( home_url( '/servicios/' . $s['slug'] . '/' ) ); ?>" class="card" style="display: block;">
+                <a href="<?php echo esc_url( $s['href'] ); ?>" class="card" style="display: block;">
                     <span class="icon-circle"><?php echo drmejia_icon( $s['icon'], 22 ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
                     <h3 class="h4" style="margin-bottom: 10px;"><?php echo esc_html( $s['title'] ); ?></h3>
                     <p class="body" style="font-size: 14.5px; margin-bottom: 16px;"><?php echo esc_html( $s['desc'] ); ?></p>
