@@ -14,6 +14,6 @@ El contenido de páginas y entradas, la configuración de WordPress, los medios 
 
 ## Estado y despliegue
 
-La versión de código se reconstruyó el 1 de noviembre de 2026 a partir de respaldos locales de los archivos desplegados. Véase [la procedencia y los límites de la copia](SOURCE-SNAPSHOT.md).
+La versión de código se reconstruyó el 1 de noviembre de 2026 a partir de respaldos locales y se comparó después con los archivos activos del tema y plugin. Véase [la procedencia y los límites de la copia](SOURCE-SNAPSHOT.md).
 
 Antes de cualquier despliegue, comparar cada archivo con la versión activa del servidor, hacer un respaldo y revisar el contenido de WordPress. No copiar el repositorio completo sobre `wp-content`: `source-assets/` y `wordpress-config/` son referencias, y la configuración del sitio no está versionada aquí.
