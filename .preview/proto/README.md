@@ -21,11 +21,15 @@ python3 -m http.server 8770 --bind 127.0.0.1 --directory .preview/proto/site
 | `sig-sobre.js` | /sobre/ | His career as a DNA strand; each milestone locks a base pair. The quote reads in word by word. |
 | `sig-profesionales.js` + `ca-map.json` | /profesionales/ | Natural Earth map of Central America with referral arcs into Managua. |
 | `sig-adn-fetal.js` | /adn-fetal/ | Interactive microscope: a lens over cell-free DNA, three steps (blood, placental DNA, the 21/18/13 count) and a "21 extra" comparison. Needs the doctor's review. v1 is in `archive/`. |
+| `scenes.js` + `hero-shared.css` | pages with a `hero-<page>.js` | The homepage's particle engine (forked from the 0.3.1 dna-scenes.js, with the doctor-reviewed footprint), extended with a family tree, a karyotype, a blood stream, hover highlight and focus, and stories stepped from outside (`canvas.mxStory`). |
+| `hero-servicios.js` | /servicios/ (the "Consulta genética" menu item) | `?dir=a` family tree beside the title (hover a person: their line lights up, focus racks to them); `?dir=b` karyotype (spread settles into pairs; hover a pair). |
+| `hero-tamizaje.js` | /tamizaje/ | In the first illustration box: `?dir=a` the heel-prick test in 5 steps (buttons, autoplay; hover the heel to zoom on the sites); `?dir=b` the footprint with a "días de vida" slider. |
+| `hero-adn-fetal.js` | /adn-fetal/ | A band of cell-free DNA flowing under the title, 1 in 10 placental; `?dir=b` adds a push-in on scroll. |
 
 All of it is transforms, SVG or one small canvas per section; it draws only while on screen and stays still
 under reduced motion. Measured at 4x CPU throttle: no long tasks, 60 fps.
 
 ## Checks
 
-`check-*.js` take stills, `perf-*.js` measure frames and long tasks at 4x CPU, and `record*.js` film the
+`check-*.js` take stills (`check-heroes.js` for the hero scenes), `perf-*.js` measure frames and long tasks at 4x CPU, and `record*.js` film the
 MP4s (saved to `.deploys/proto-motion/`). They use Playwright from `~/Projects/motion-graphics/node_modules`.

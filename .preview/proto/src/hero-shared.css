@@ -1,0 +1,22 @@
+/* Hero stages for the particle scenes (prototype). The canvas covers the hero behind the text;
+   .mx-stage is where the subject sits, .mx-keep is the text area the particles fade out of. */
+.mx-has-scene { position: relative; overflow: hidden; }
+.mx-has-scene > .container { position: relative; z-index: 1; }
+.mx-scene-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; transition: opacity 1.2s ease; }
+.mx-scene-canvas.is-ready { opacity: 1; }
+.mx-stage, .mx-keep { position: absolute; pointer-events: none; visibility: hidden; }
+.mx-tag {
+    position: absolute; z-index: 2; pointer-events: none;
+    font: 600 12.5px/1.2 "Plus Jakarta Sans", system-ui, sans-serif; letter-spacing: 0.01em;
+    color: var(--brand, #0E3A43); background: rgba(255, 255, 255, 0.86);
+    border: 1px solid var(--line, rgba(14, 58, 67, 0.12)); border-radius: 999px; padding: 6px 11px;
+    box-shadow: 0 6px 18px rgba(8, 43, 51, 0.08); white-space: nowrap;
+    opacity: 0; transform: translateY(4px); transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.mx-tag.is-on { opacity: 1; transform: none; }
+.mx-caption {
+    position: absolute; z-index: 2; margin: 0;
+    font: 500 13px/1.45 "Plus Jakarta Sans", system-ui, sans-serif; color: var(--ink-2, #425A5C);
+}
+.mx-caption b { color: var(--brand, #0E3A43); font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .mx-scene-canvas, .mx-tag { transition: none; } }

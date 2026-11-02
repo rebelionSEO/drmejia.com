@@ -8,7 +8,7 @@ const pages = ['servicios', 'tamizaje', 'adn-fetal', 'sobre', 'profesionales', '
     for (const mode of ['without', 'with']) {
       const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
       const p = await ctx.newPage(); const errs = [];
-      if (mode === 'without') await p.route(/\/proto\//, (r) => r.abort());
+      if (mode === 'without') await p.route(/\/proto\/|\/drmejia-motion\//, (r) => r.abort());
       p.on('pageerror', (e) => errs.push(e.message));
       await p.addInitScript(() => { try { localStorage.setItem('drmejia_analytics_consent', 'denied'); } catch (e) {}
         window.__lt = []; new PerformanceObserver((l) => { for (const e of l.getEntries()) window.__lt.push([Math.round(e.startTime), Math.round(e.duration)]); }).observe({ type: 'longtask', buffered: true }); });

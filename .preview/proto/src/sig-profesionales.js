@@ -9,13 +9,15 @@
         return;
     }
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // The map sits next to this script, wherever the site serves it from.
+    var MAP_URL = new URL('ca-map.json', (document.currentScript && document.currentScript.src) || location.href).href;
     var NS = 'http://www.w3.org/2000/svg';
     var ORDER = ['GTM', 'BLZ', 'SLV', 'HND', 'CRI', 'PAN'];   // north to south, then to Managua
     var css = getComputedStyle(document.documentElement);
     var accent = css.getPropertyValue('--accent').trim() || '#7E9A8F';
     var light = css.getPropertyValue('--accent-soft').trim() || '#E8EFEB';
 
-    fetch('/proto/ca-map.json').then(function (r) { return r.json(); }).then(function (map) {
+    fetch(MAP_URL).then(function (r) { return r.json(); }).then(function (map) {
         var v = map.view, cap = map.capitals, mga = cap.NIC;
         var svg = document.createElementNS(NS, 'svg');
         svg.setAttribute('viewBox', v.join(' '));

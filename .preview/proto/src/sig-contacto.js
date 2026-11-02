@@ -16,7 +16,7 @@
     }
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var NS = 'http://www.w3.org/2000/svg';
-    var MAPS = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Clínica Perinatal, Monte de los Olivos, Managua');
+    var MAPS = 'https://maps.app.goo.gl/2oXm2GGeiTNKHGD6A';   // the clinic's pin (Clínica Perinatal), from Gera 2026-11-01
 
     var STEPS = [
         'Desde los semáforos del Monte de los Olivos',
