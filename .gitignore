@@ -31,3 +31,11 @@ wp-content/plugins/
 # Node (if we ever add tooling)
 node_modules/
 npm-debug.log
+
+# Local preview + test tooling (Claude). The inner-page motion prototypes are tracked;
+# their generated output (mirrored live pages, screenshots) is not.
+.preview/*
+!.preview/proto/
+.preview/proto/site/
+.preview/proto/out/
+.preview/proto/live/
