@@ -121,6 +121,7 @@ get_header();
 
         <?php
         // Documentos y miniaturas aprobados por el Dr. Mejía; IDs de la biblioteca de WordPress.
+        // Seis PDF y siete JPEG nuevos: medios 96–108 de WordPress.
         $certificates = array(
             array(
                 'year' => '2026',
@@ -129,6 +130,64 @@ get_header();
                 'image_alt' => __( 'Diploma de expositor del VIII Simposio de Oncología', 'drmejia' ),
                 'image_id' => 91,
                 'document_id' => 90,
+            ),
+            array(
+                'year' => '2026',
+                'title' => __( 'Expositor en Congreso Médico y Enfermería', 'drmejia' ),
+                'detail' => __( 'Servicio de Ginecología y Obstetricia · Hospital Vivian Pellas · 11–13 de junio de 2026', 'drmejia' ),
+                'image_alt' => __( 'Diploma de expositor en el Congreso Médico y Enfermería de 2026', 'drmejia' ),
+                'image_id' => 102,
+                'document_id' => 96,
+                'document_page' => 1,
+            ),
+            array(
+                'year' => '2025',
+                'title' => __( 'Expositor en XI Simposio de Neurociencias', 'drmejia' ),
+                'detail' => __( '«Epilepsias» · Hospital Vivian Pellas · 6 de septiembre de 2025', 'drmejia' ),
+                'image_alt' => __( 'Diploma de expositor del XI Simposio de Neurociencias sobre epilepsias', 'drmejia' ),
+                'image_id' => 104,
+                'document_id' => 97,
+            ),
+            array(
+                'year' => '2024',
+                'title' => __( 'Conferencista en actualización sobre cáncer de mama', 'drmejia' ),
+                'detail' => __( '«Sospecha, Detecta, Deriva» · Hospital Militar Escuela Dr. Alejandro Dávila Bolaños · 2024', 'drmejia' ),
+                'image_alt' => __( 'Certificado de conferencista en actualización sobre cáncer de mama', 'drmejia' ),
+                'image_id' => 103,
+                'document_id' => 96,
+                'document_page' => 2,
+            ),
+            array(
+                'year' => '2023',
+                'title' => __( 'Curso de actualización en cáncer hereditario', 'drmejia' ),
+                'detail' => __( 'Instituto de Oncología Ángel H. Roffo, Universidad de Buenos Aires · aprobado en 2023', 'drmejia' ),
+                'image_alt' => __( 'Certificado del V Curso de Actualización en Cáncer Hereditario', 'drmejia' ),
+                'image_id' => 105,
+                'document_id' => 98,
+            ),
+            array(
+                'year' => '2023',
+                'title' => __( 'Participación en congreso de genética médica y medicina genómica', 'drmejia' ),
+                'detail' => __( 'I Congreso Iberoamericano · Cartagena de Indias · participación presencial, 2023', 'drmejia' ),
+                'image_alt' => __( 'Certificado de participación en el I Congreso Iberoamericano de Genética Médica y Medicina Genómica', 'drmejia' ),
+                'image_id' => 106,
+                'document_id' => 99,
+            ),
+            array(
+                'year' => '2023',
+                'title' => __( 'Presentación oral sobre el registro nicaragüense de malformaciones congénitas', 'drmejia' ),
+                'detail' => __( 'Conferencia internacional sobre defectos congénitos · Santiago de Chile · 2023', 'drmejia' ),
+                'image_alt' => __( 'Certificado de presentación oral en la conferencia internacional sobre defectos congénitos', 'drmejia' ),
+                'image_id' => 107,
+                'document_id' => 100,
+            ),
+            array(
+                'year' => '2023',
+                'title' => __( 'Participación en Simposio de Tamizaje Neonatal', 'drmejia' ),
+                'detail' => __( 'Participación virtual · 16 de mayo de 2023', 'drmejia' ),
+                'image_alt' => __( 'Certificado de participación virtual en el Simposio de Tamizaje Neonatal de 2023', 'drmejia' ),
+                'image_id' => 108,
+                'document_id' => 101,
             ),
             array(
                 'year' => '2021',
@@ -154,6 +213,9 @@ get_header();
                 $image_url = wp_get_attachment_image_url( $certificate['image_id'], 'medium' );
                 if ( ! $document_url || ! $image_url ) {
                     continue;
+                }
+                if ( ! empty( $certificate['document_page'] ) ) {
+                    $document_url .= '#page=' . absint( $certificate['document_page'] );
                 }
                 ?>
                 <a class="gmb-cert-card" href="<?php echo esc_url( $document_url ); ?>" target="_blank" rel="noopener noreferrer">
