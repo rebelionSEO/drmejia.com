@@ -43,6 +43,7 @@ $blog_posts = new WP_Query( array(
 .blog-more h2 { margin: 0 0 22px; font-size: clamp(23px, 2.5vw, 30px); }
 .blog-more .posts-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .blog-more .post-card .post-body p { margin: 12px 0 0; color: var(--ink-2); font-size: 14px; line-height: 1.6; }
+.blog-more__review { display: inline-flex; align-items: center; gap: 7px; margin-top: 15px; color: var(--brand-deep); font-size: 12px; font-weight: 700; }
 .blog-pagination { display: flex; justify-content: center; margin-top: 38px; }
 .blog-pagination .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; min-height: 38px; padding: 6px 10px; margin: 0 3px; border-radius: 10px; color: var(--brand); text-decoration: none; }
 .blog-pagination .page-numbers.current { background: var(--brand); color: #fff; }
@@ -114,10 +115,13 @@ $blog_posts = new WP_Query( array(
                                 <div class="post-body">
                                     <div class="post-meta">
                                         <?php $categories = get_the_category(); if ( ! empty( $categories ) ) : ?><span class="chip"><?php echo esc_html( $categories[0]->name ); ?></span><?php endif; ?>
-                                        <span class="meta"><?php echo esc_html( get_the_date( 'j \d\e F \d\e Y' ) ); ?></span>
+                                        <span class="meta"><?php echo esc_html( sprintf( __( 'Publicado el %s', 'drmejia' ), get_the_date( 'j \d\e F \d\e Y' ) ) ); ?></span>
                                     </div>
                                     <h3><?php the_title(); ?></h3>
-                                    <?php if ( has_excerpt() ) : ?><p><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
+                                    <?php if ( 56 === get_the_ID() ) : ?>
+                                        <p><?php esc_html_e( 'Conozca cómo se realiza el tamizaje metabólico neonatal, qué enfermedades detecta la prueba del talón y las opciones disponibles en Nicaragua.', 'drmejia' ); ?></p>
+                                        <span class="blog-more__review"><?php echo drmejia_icon( 'shield', 15 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?><?php esc_html_e( 'Revisado por el Dr. Gerardo Mejía', 'drmejia' ); ?></span>
+                                    <?php elseif ( has_excerpt() ) : ?><p><?php echo esc_html( get_the_excerpt() ); ?></p><?php endif; ?>
                                 </div>
                             </a>
                         <?php endwhile; ?>
