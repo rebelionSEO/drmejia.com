@@ -1598,25 +1598,39 @@
                 canvas.parentElement.classList.add('has-scene');
             }
 
-            section.addEventListener('pointermove', function (e) {
-                if (e.pointerType !== 'mouse') {
+            // The pointer is followed over the canvas itself, wherever it sits in the page (a canvas can
+            // reach beyond its section, e.g. up over a page title).
+            function pointerAt(e) {
+                var r = canvas.getBoundingClientRect();
+                if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+                    return null;
+                }
+                return [((e.clientX - r.left) / r.width) * 2 - 1, 1 - ((e.clientY - r.top) / r.height) * 2];
+            }
+            document.addEventListener('pointermove', function (e) {
+                if (e.pointerType !== 'mouse' || !visible) {
                     return;
                 }
-                var r = canvas.getBoundingClientRect();
-                pointerTarget = [((e.clientX - r.left) / r.width) * 2 - 1, 1 - ((e.clientY - r.top) / r.height) * 2];
-                pointerOnTarget = 1;
-            });
-            section.addEventListener('pointerdown', function (e) {
-                if (e.pointerType === 'mouse' || !type.tapFocus) {
+                var at = pointerAt(e);
+                if (at) {
+                    pointerTarget = at;
+                    pointerOnTarget = 1;
+                } else if (pointerOnTarget) {
+                    pointerOnTarget = 0;
+                    pointerTarget = [0, 0];
+                }
+            }, { passive: true });
+            document.addEventListener('pointerdown', function (e) {
+                var at = e.pointerType === 'mouse' || !type.tapFocus ? null : pointerAt(e);
+                if (!at) {
                     return;
                 }
-                var r = canvas.getBoundingClientRect();
-                pointerTarget = [((e.clientX - r.left) / r.width) * 2 - 1, 1 - ((e.clientY - r.top) / r.height) * 2];
+                pointerTarget = at;
                 pointerOnTarget = 1;
                 clearTimeout(touchTimer);
                 touchTimer = setTimeout(function () { pointerOnTarget = 0; }, 3500);
-            });
-            section.addEventListener('pointerleave', function () {
+            }, { passive: true });
+            document.documentElement.addEventListener('pointerleave', function () {
                 pointerOnTarget = 0;
                 pointerTarget = [0, 0];
             });
