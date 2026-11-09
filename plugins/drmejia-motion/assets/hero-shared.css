@@ -1,7 +1,8 @@
 /* Hero stages for the particle scenes (prototype). The canvas covers the hero behind the text;
    .mx-stage is where the subject sits, .mx-keep is the text area the particles fade out of. */
 .mx-has-scene { position: relative; overflow: hidden; }
-.mx-has-scene > .container { position: relative; z-index: 1; }
+.mx-has-scene > .container, .mx-has-scene > .cg-wrap { position: relative; z-index: 1; }
+.cg-hero.mx-has-scene { overflow: visible; }   /* its canvas reaches up over the page title */
 .mx-scene-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; transition: opacity 1.2s ease; }
 .mx-scene-canvas.is-ready { opacity: 1; }
 .mx-stage, .mx-keep { position: absolute; pointer-events: none; visibility: hidden; }

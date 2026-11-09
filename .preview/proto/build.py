@@ -67,6 +67,14 @@ def inject_like_plugin(html: str, path: str, slug: str) -> str:
     return re.sub(r"</body>(?!.*</body>)", lambda m: foot + "</body>", html, count=1, flags=re.S)
 
 
+def strip_live_motion(html: str) -> str:
+    """Drop the live drmejia-motion tags (the plugin is installed on the site), so the preview loads
+    only the local copy."""
+    html = re.sub(r"<link[^>]*drmejia-motion/assets/[^>]*>\n?", "", html)
+    html = re.sub(r"<script[^>]*drmejia-motion/assets/[^>]*></script>\n?", "", html)
+    return html
+
+
 def build_page(path: str) -> None:
     html = get(f"{SITE}{path}?proto={int(time.time())}").decode("utf-8")
     for rel in sorted(set(re.findall(re.escape(SITE + THEME_PATH) + r"([\w./-]+?)(?:\?ver=[\w.]+)?(?=[\"'])", html))):
@@ -76,6 +84,7 @@ def build_page(path: str) -> None:
     html = re.sub(r"<!-- Google Tag Manager \(noscript\) -->.*?<!-- End Google Tag Manager \(noscript\) -->", "", html, flags=re.S)
     html = re.sub(r"<script[^>]*hostinger-reach-embed-js[^>]*></script>", "", html)
     assert "googletagmanager.com/gtm.js" not in html, "GTM still present"
+    html = strip_live_motion(html)
 
     slug = path.strip("/") or "home"
     if PLUGIN_MODE:
