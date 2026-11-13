@@ -102,6 +102,7 @@ get_header();
     background: #fff;
     box-shadow: var(--shadow-sm);
 }
+.tamizaje-local-card:last-child:nth-child(3n + 1) { grid-column: 2; }
 .tamizaje-local-card-head {
     display: flex;
     align-items: center;
@@ -124,6 +125,7 @@ get_header();
 .tamizaje-local-people li { padding-top: 17px; }
 .tamizaje-local-people li + li { margin-top: 17px; border-top: 1px solid var(--rule-soft); }
 .tamizaje-local-name { display: block; font-size: 15px; font-weight: 650; line-height: 1.45; }
+.tamizaje-local-clinic { display: block; margin-top: 4px; color: var(--ink-2); font-size: 14px; line-height: 1.5; }
 .tamizaje-local-phone {
     display: inline-flex;
     align-items: center;
@@ -140,6 +142,8 @@ get_header();
 @media (max-width: 900px) {
     .tamizaje-local-heading { grid-template-columns: 1fr; gap: 14px; }
     .tamizaje-local-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tamizaje-local-card:last-child:nth-child(3n + 1) { grid-column: auto; }
+    .tamizaje-local-card:last-child:nth-child(2n + 1) { grid-column: 1 / -1; width: calc((100% - 18px) / 2); justify-self: center; }
 }
 @media (max-width: 600px) {
     .tamizaje-local-jump { border-radius: var(--r-md); }
@@ -147,6 +151,7 @@ get_header();
     .tamizaje-local-note-icon { flex-basis: 40px; width: 40px; height: 40px; }
     .tamizaje-local-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .tamizaje-local-card { padding: 20px; }
+    .tamizaje-local-card:last-child:nth-child(2n + 1) { grid-column: auto; width: auto; justify-self: stretch; }
 }
 </style>
 
@@ -163,13 +168,13 @@ get_header();
         <div class="split-grid" style="align-items: end;">
             <h1 style="margin: 0;"><?php esc_html_e( 'Tamizaje Metabólico Neonatal', 'drmejia' ); ?></h1>
             <p class="lede" style="margin: 0;">
-                <?php esc_html_e( 'Una prueba preventiva que se realiza en los primeros días de vida para detectar enfermedades metabólicas tratables antes de que aparezcan los síntomas.', 'drmejia' ); ?>
+                <?php esc_html_e( 'Una prueba preventiva para recién nacidos que ayuda a detectar enfermedades metabólicas tratables antes de que aparezcan los síntomas.', 'drmejia' ); ?>
             </p>
         </div>
 
         <?php
         $kpis = array(
-            array( 'l' => __( 'Edad indicada', 'drmejia' ),  'v' => __( 'Ideal 48 – 72 horas', 'drmejia' ) ),
+            array( 'l' => __( 'Momento recomendado', 'drmejia' ),  'v' => __( 'Primera semana de vida', 'drmejia' ) ),
             array( 'l' => __( 'Procedimiento', 'drmejia' ),  'v' => __( 'Prueba del talón', 'drmejia' ) ),
             array( 'l' => __( 'Resultados', 'drmejia' ),     'v' => __( '10 – 14 días', 'drmejia' ) ),
             array( 'l' => __( 'Incluye', 'drmejia' ),        'v' => __( 'Consulta de interpretación', 'drmejia' ) ),
@@ -204,7 +209,7 @@ get_header();
                 <span class="eyebrow" style="margin-bottom: 20px; display: inline-flex;"><?php esc_html_e( '¿Qué es?', 'drmejia' ); ?></span>
                 <h2 style="margin: 0 0 20px;"><?php esc_html_e( 'Detección temprana de enfermedades tratables', 'drmejia' ); ?></h2>
                 <p class="lede" style="margin-bottom: 16px;">
-                    <?php esc_html_e( 'El tamizaje metabólico neonatal —conocido también como "prueba del talón"— es un análisis de sangre que se realiza en los primeros días de vida del bebé para identificar enfermedades metabólicas, endocrinas y genéticas.', 'drmejia' ); ?>
+                    <?php esc_html_e( 'El tamizaje metabólico neonatal —conocido también como "prueba del talón"— es un análisis de sangre del recién nacido para identificar enfermedades metabólicas, endocrinas y genéticas.', 'drmejia' ); ?>
                 </p>
                 <p class="body">
                     <?php esc_html_e( 'Muchas de estas condiciones no presentan síntomas al nacer, pero si se detectan a tiempo pueden tratarse antes de causar daño irreversible. Es una de las intervenciones preventivas más importantes en neonatología.', 'drmejia' ); ?>
@@ -257,7 +262,7 @@ get_header();
         <?php
         $steps = array(
             array( 'n' => '1', 'title' => __( 'Consulta inicial', 'drmejia' ),         'desc' => __( 'Conversación con los padres y evaluación del recién nacido.', 'drmejia' ) ),
-            array( 'n' => '2', 'title' => __( 'Toma de muestra', 'drmejia' ),          'desc' => __( 'Unas gotas de sangre del talón del bebé. Procedimiento rápido y prácticamente indoloro.', 'drmejia' ) ),
+            array( 'n' => '2', 'title' => __( 'Toma de muestra', 'drmejia' ),          'desc' => __( 'Unas gotas de sangre del talón del bebé. Procedimiento rápido y prácticamente exento de complicaciones.', 'drmejia' ) ),
             array( 'n' => '3', 'title' => __( 'Análisis de laboratorio', 'drmejia' ),  'desc' => __( 'Se analizan múltiples marcadores metabólicos, hormonales y genéticos.', 'drmejia' ) ),
             array( 'n' => '4', 'title' => __( 'Entrega e interpretación', 'drmejia' ), 'desc' => __( 'Consulta dedicada para revisar los resultados y, si es necesario, plan de seguimiento.', 'drmejia' ) ),
         );
@@ -297,23 +302,26 @@ get_header();
         <?php
         $contactos_departamentos = array(
             array( 'departamento' => 'Chinandega', 'medicos' => array(
-                array( 'nombre' => 'Dra. María José Barrantes', 'telefono' => '8353 6681' ),
-                array( 'nombre' => 'Dra. Miurel Somarriba', 'telefono' => '8874 6896' ),
+                array( 'nombre' => 'Dra. María José Barrantes', 'clinica' => 'Clínica de Especialidades Odontomax', 'telefono' => '8353 6681' ),
+                array( 'nombre' => 'Dra. Miurel Somarriba', 'clinica' => 'Consultorio Pediátrico', 'telefono' => '8874 6896' ),
             ) ),
             array( 'departamento' => 'Estelí', 'medicos' => array(
-                array( 'nombre' => 'Dra. Vivian López', 'telefono' => '8499 0780' ),
+                array( 'nombre' => 'Dra. Vivian López', 'clinica' => 'Clínica de Jesús', 'telefono' => '8499 0780' ),
             ) ),
             array( 'departamento' => 'Jinotega', 'medicos' => array(
-                array( 'nombre' => 'Dr. Rolando Rivera', 'telefono' => '8441 8255' ),
+                array( 'nombre' => 'Dr. Rolando Rivera', 'clinica' => 'Clínica Aesthetic', 'telefono' => '8441 8255' ),
             ) ),
             array( 'departamento' => 'Juigalpa', 'medicos' => array(
-                array( 'nombre' => 'Dra. Ivonne García', 'telefono' => '8355 6596' ),
+                array( 'nombre' => 'Dra. Ivonne García', 'clinica' => 'Consultorio Sacuanjoche', 'telefono' => '8702 7320' ),
             ) ),
             array( 'departamento' => 'León', 'medicos' => array(
-                array( 'nombre' => 'Dr. Juan José Zapata', 'telefono' => '8433 1122' ),
+                array( 'nombre' => 'Dr. Juan José Zapata', 'clinica' => 'Clínica de Especialidades Médicas', 'telefono' => '8587 4903' ),
             ) ),
             array( 'departamento' => 'Masaya', 'medicos' => array(
-                array( 'nombre' => 'Dra. Isalia Soza', 'telefono' => '8391 6460' ),
+                array( 'nombre' => 'Dra. Isalia Soza', 'clinica' => 'Centro Médico San Lucas', 'telefono' => '8391 6460' ),
+            ) ),
+            array( 'departamento' => 'Ocotal, Nueva Segovia', 'medicos' => array(
+                array( 'nombre' => 'Dr. Edward González', 'clinica' => 'Clínica de Especialidades Médicas del Norte', 'telefono' => '8442 7058' ),
             ) ),
         );
         ?>
@@ -328,6 +336,7 @@ get_header();
                         <?php foreach ( $localidad['medicos'] as $medico ) : ?>
                             <li>
                                 <span class="tamizaje-local-name"><?php echo esc_html( $medico['nombre'] ); ?></span>
+                                <span class="tamizaje-local-clinic"><?php echo esc_html( $medico['clinica'] ); ?></span>
                                 <a class="tamizaje-local-phone" href="<?php echo esc_url( 'tel:+505' . preg_replace( '/\D+/', '', $medico['telefono'] ) ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Llamar a %1$s al %2$s', 'drmejia' ), $medico['nombre'], '+505 ' . $medico['telefono'] ) ); ?>">
                                     <?php echo drmejia_icon( 'phone', 15 ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
                                     <?php echo esc_html( '+505 ' . $medico['telefono'] ); ?>
@@ -355,7 +364,7 @@ get_header();
         <?php
         $faqs = array(
             array( 'q' => __( '¿Es doloroso para el bebé?', 'drmejia' ),               'a' => __( 'Es una punción muy pequeña en el talón. La molestia es mínima y momentánea.', 'drmejia' ) ),
-            array( 'q' => __( '¿Cuándo debe realizarse?', 'drmejia' ),                 'a' => __( 'Idealmente entre las 48 horas y los 7 días de vida. Se puede hacer antes si hay indicación médica.', 'drmejia' ) ),
+            array( 'q' => __( '¿Cuándo debe realizarse?', 'drmejia' ),                 'a' => __( 'Se recomienda tomar la muestra durante la primera semana de vida. Si no fue posible, puede realizarse durante el primer mes. Si el bebé ya cumplió un mes, consulte al Dr. Mejía para recibir orientación.', 'drmejia' ) ),
             array( 'q' => __( '¿Cuánto tiempo toman los resultados?', 'drmejia' ),     'a' => __( 'Entre 10 y 14 días. Si hay un hallazgo que requiere atención inmediata, contactamos a la familia antes.', 'drmejia' ) ),
             array( 'q' => __( '¿Qué enfermedades detecta?', 'drmejia' ),               'a' => __( 'Hipotiroidismo congénito, hiperplasia suprarrenal, fenilcetonuria, galactosemia, fibrosis quística y otras condiciones metabólicas y genéticas según el panel.', 'drmejia' ) ),
             array( 'q' => __( '¿Qué pasa si el resultado es positivo?', 'drmejia' ),   'a' => __( 'Programamos una consulta extendida para confirmar con estudios adicionales y diseñar el plan de tratamiento. Detectarlo a tiempo permite resultados muy favorables.', 'drmejia' ) ),
@@ -380,7 +389,7 @@ get_header();
     <div class="container" style="text-align: center; max-width: 720px;">
         <h2><?php esc_html_e( '¿Listo para hacerle el tamizaje a su bebé?', 'drmejia' ); ?></h2>
         <p class="lede" style="margin-bottom: 32px;">
-            <?php esc_html_e( 'Agende la consulta con anticipación para coordinar la toma de muestra en los primeros días de vida del bebé.', 'drmejia' ); ?>
+            <?php esc_html_e( 'Agende una consulta para coordinar la toma de muestra y resolver sus dudas.', 'drmejia' ); ?>
         </p>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
             <a href="<?php echo esc_url( home_url( '/contacto/' ) ); ?>" class="btn" style="background: #FFF; color: var(--brand);">
